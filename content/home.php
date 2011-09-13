@@ -5,21 +5,6 @@
 	<!--<p><?php html_link(create_path('#'),'Learn more &raquo;','btn primary large'); ?></p>-->
 </div>
 
-<div class="alert-message info">
-	<a class="close" href="#" onclick="$('.alert-message').fadeOut();return false;">x</a>
-	<p><strong>Heads up!</strong> If this is a new install, make sure you modify your .htaccess file!</p>
-</div>
-
-<h2>Modifying your .htaccess file</h2>
-<p>Your .htaccess file should be ready to rock but, if this is a new install of this template, you may need to change your base path. Just swap "framework" on line 2 for whatever your real base path is:</p>
-<pre class="prettyprint linenums">
-RewriteEngine On
-RewriteBase /framework/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php/$1 [L]
-</pre>
-
 <h2>Adding images</h2>
 <p>You can add images to your codse using the simple html_img helper:</p>
 <pre class="prettyprint linenums">
