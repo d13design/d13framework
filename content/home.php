@@ -13,7 +13,7 @@
 <h2>Adding links</h2>
 <p>You can add links to your code using the simple html_link helper:</p>
 <pre class="prettyprint linenums">
-&lt;?php html_link('linkURL', 'linkText', 'linkClass', 'title', 'target'); ?&gt;</pre>
+&lt;?php html_link('linkURL', 'linkText', 'linkClass', 'title', 'target', 'span'); ?&gt;</pre>
 
 <h2>Generating paths</h2>
 <p>You can generate internal paths using the create_path helper:</p>
@@ -28,6 +28,12 @@
 <p>You can convert "2011-09" to "September 2011" using the pretty_date helper:</p>
 <pre class="prettyprint linenums">
 &lt;?php echo pretty_date('2011-09'); ?&gt;</pre>
+
+<h2>Trimming text</h2>
+<p>You can trim long strings of text to a given number of words using the trimmer helper:</p>
+<pre class="prettyprint linenums">
+&lt;?php echo trimmer('The quick brown fox jumped over the lazy dog', 8, '&amp;#133;'); ?&gt;
+returns 'The quick brown fox jumped over the lazy &#133;'</pre>
 
 <h2>Page listing</h2>
 <p>You can create a list of all of the content pages in the content/pages folder using the list_pages helper:</p>
@@ -84,12 +90,12 @@ echo $str;
 &lt;?php
   echo html_img('images/sample.jpg', 'photo', 'A photo of a spider', create_path('blog','2011-08','spiders-everywhere'), 'img_link', 'Read more spiders', '_self');
   echo '&lt;br/&gt;';
-  html_link('http://flic.kr/p/5q4BzT', 'View this photo on Flickr.com', 'ext_link', 'View this photo on Flickr.com', '_blank');
+  html_link('http://flic.kr/p/5q4BzT', 'View this photo on Flickr.com', 'ext_link', 'View this photo on Flickr.com', '_blank', true);
 ?&gt;</pre>
 <?php
 	echo html_img('images/sample.jpg', 'photo', 'A photo of a spider', create_path('blog','2011-08','spiders-everywhere'), 'img_link', 'Read more about spiders', '_self');
 	echo '<br/>';
-	html_link('http://flic.kr/p/5q4BzT', 'View this photo on Flickr.com', 'ext_link', 'View this photo on Flickr.com', '_blank');
+	html_link('http://flic.kr/p/5q4BzT', 'View this photo on Flickr.com', 'ext_link', 'View this photo on Flickr.com', '_blank', true);
 ?>
 
 <h2>Styles and the Twitter Bootstrap framework</h2>

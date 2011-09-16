@@ -23,10 +23,14 @@ function html_img($file,$class='',$alt='',$link='',$linkclass='',$title='',$targ
 }
 
 /* Helper to generare HTML for a link */
-function html_link($link,$text,$linkClass='',$title='',$target=''){
+function html_link($link,$text,$linkClass='',$title='',$target='',$span=false){
 	// Always fallback to links opening in _self
 	if($target=='' || !isset($target)) $target='_self';
-	echo '<a href="'.$link.'" title="'.$title.'" class="'.$linkClass.'" target="'.$target.'">'.$text.'</a>';
+	echo '<a href="'.$link.'" title="'.$title.'" class="'.$linkClass.'" target="'.$target.'">';
+	if($span) echo '<span>';
+	echo $text;
+	if($span) echo '</span>';
+	echo '</a>';
 }
 
 /* Helper to create a compatible path */
@@ -150,6 +154,16 @@ function sidebar($logoFile='',$blogList=true,$monthList=true,$workList=true,$pag
 	
 }
 
+/* A helper to trim a string to a given number of words */
+function trimmer($str, $len=12, $extra='&#133;'){
+	$pieces = explode(" ", $str);
+	$op = '';
+	for($a=0;$a<$len;$a++){
+		$op = $op.$pieces[$a].' ';
+	}
+	if(count($pieces)>$len) $op = $op.$extra;
+	return $op;
+}
 
 
 ?>
