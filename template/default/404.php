@@ -1,3 +1,11 @@
+<!-- 
+      404.php
+      d13design
+      
+      Created by Dave Waller on 2011-10-11.
+      Copyright 2011 Dave Waller. All rights reserved.
+ -->
+
 <!-- Example promo-panel -->
 <div class="hero-unit">
 	<h1>404</h1>
@@ -9,6 +17,7 @@
 <div class="alert-message info">
 	<a class="close" href="#" onclick="$('.alert-message').fadeOut();return false;">x</a>
 	<p><strong>Heads up!</strong> If this is a new install, make sure you modify your .htaccess file!</p>
+	<p>You can edit the contents of this page in <strong>template/<?php echo TEMPLATE; ?>/404.php</strong></p>
 </div>
 
 <h2>Modifying your .htaccess file</h2>
@@ -22,7 +31,7 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 </pre>
 
 <h2>Modifying your site config</h2>
-<p>Your site config is held in the top few lines of /index.php - make any changes you need in these lines:</p>
+<p>Your site config is held in the /lib/config.inc.php file - make any changes you need in these lines:</p>
 <pre class="prettyprint linenums">
 define("BASE_PATH","http://127.0.0.1"); //The root domain for your site
 $path = "/framework"; //The folder where your site is held (site root)

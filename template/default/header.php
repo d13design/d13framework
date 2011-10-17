@@ -1,3 +1,11 @@
+<!-- 
+      header.php
+      d13design
+      
+      Created by Dave Waller on 2011-10-11.
+      Copyright 2011 Dave Waller. All rights reserved.
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -34,8 +42,7 @@
 					<h3><?php html_link(create_path(),SITE_NAME); ?></h3>
 					<ul>
 						<li class="<?php if($a['section']=='') echo 'active'; ?>"><?php html_link(create_path(),'Home'); ?></li>
-						<li class="<?php if($a['section']=='work') echo 'active'; ?>"><?php html_link(create_path('work'),'Work'); ?></li>
-						<li class="<?php if($a['section']=='blog') echo 'active'; ?>"><?php html_link(create_path('blog'),'Blog'); ?></li>
+						<?php list_sections(); ?>
 					</ul>
 					<ul class="nav secondary-nav">
 						<?php list_pages(); ?>

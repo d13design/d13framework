@@ -1,8 +1,21 @@
+<!-- 
+      home.php
+      d13design
+      
+      Created by Dave Waller on 2011-10-11.
+      Copyright 2011 Dave Waller. All rights reserved.
+ -->
+
 <!-- Example promo-panel -->
 <div class="hero-unit">
 	<h1>Welcome to <?php echo SITE_NAME; ?>!</h1>
 	<p>Nerd note: A databaseless, PHP content management system driven entirely by files and incorporating the wonderiferous Twitter Bootstrap HTML 5 style framework, Mixinised with Less.</p>
 	<!--<p><?php html_link(create_path('#'),'Learn more &raquo;','btn primary large'); ?></p>-->
+</div>
+
+<div class="alert-message info">
+	<a class="close" href="#" onclick="$('.alert-message').fadeOut();return false;">x</a>
+	<p>You can edit the contents of this page in <strong>template/<?php echo TEMPLATE; ?>/home.php</strong></p>
 </div>
 
 <h2>Adding images</h2>
@@ -32,7 +45,8 @@
 <h2>Trimming text</h2>
 <p>You can trim long strings of text to a given number of words using the trimmer helper:</p>
 <pre class="prettyprint linenums">
-&lt;?php echo trimmer('The quick brown fox jumped over the lazy dog', 8, '&amp;#133;'); ?&gt;
+&lt;?php echo trimmer('The quick brown fox jumped over the lazy dog', 8, '&amp;#133;'); ?&gt;</pre>
+<pre class="prettyprint linenums">
 returns 'The quick brown fox jumped over the lazy &#133;'</pre>
 
 <h2>Page listing</h2>
@@ -47,15 +61,18 @@ returns 'The quick brown fox jumped over the lazy &#133;'</pre>
   &lt;li&gt;&lt;a href="/pages/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</pre>
 
-<h2>Blog sidebar</h2>
-<p>You can create a blog style sidebar using the sidebar() helper:</p>
+<h2>Section listing</h2>
+<p>You can create a list of all of the content sections in the content folder using the list_sections helper:</p>
 <pre class="prettyprint linenums">
-&lt;?php sidebar('logoImage','showBlogList','showArchive','showWork','showPages'); ?&gt;
-</pre>
+&lt;ul&gt;
+  &lt;?php list_sections(); ?&gt;
+&lt;/ul&gt;</pre>
 <pre class="prettyprint linenums">
-&lt;?php sidebar('images/logo.png',true,true,false,true); ?&gt;
-// Outputs a sidebar with a logo, recent blog posts, blog archive and page listing - bot no work listing!
-</pre>
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="/work"&gt;Work&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/hobbies"&gt;Hobbies&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/family"&gt;Family&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
 
 <h2>Stylesheets and Javascripts</h2>
 <p>You can use the html_css and html_js helpers to easily add CSS and JS files to your templates:</p>
@@ -73,14 +90,14 @@ returns 'The quick brown fox jumped over the lazy &#133;'</pre>
 &amp;lt;?php
 $str = "Hello World";
 echo $str;
-// Outputs Hellow World
+// Outputs Hello World
 ?&amp;gt;
 &lt;/pre&gt;</pre>
 <pre class="prettyprint linenums">
 &lt;?php
 $str = "Hello World";
 echo $str;
-// Outputs Hellow World
+// Outputs Hello World
 ?&gt;
 </pre>
 
@@ -92,11 +109,15 @@ echo $str;
   echo '&lt;br/&gt;';
   html_link('http://flic.kr/p/5q4BzT', 'View this photo on Flickr.com', 'ext_link', 'View this photo on Flickr.com', '_blank', true);
 ?&gt;</pre>
-<?php
-	echo html_img('images/sample.jpg', 'photo', 'A photo of a spider', create_path('blog','2011-08','spiders-everywhere'), 'img_link', 'Read more about spiders', '_self');
-	echo '<br/>';
-	html_link('http://flic.kr/p/5q4BzT', 'View this photo on Flickr.com', 'ext_link', 'View this photo on Flickr.com', '_blank', true);
-?>
+<pre class="prettyprint linenums">
+&lt;a href="http://d13design.co.uk/blog/2011-08/spiders-everywhere" title="Read more about spiders" class="img_link" target="_self"&gt;
+  &lt;img src="http://d13design.co.uk/assets/images/sample.jpg" alt="A photo of a spider" class="photo" /&gt;
+&lt;/a&gt;
+&lt;br/&gt;
+&lt;a href="http://flic.kr/p/5q4BzT" title="View this photo on Flickr.com" class="ext_link" target="_blank"&gt;
+  &lt;span>View this photo on Flickr.com&lt;/span&gt;
+&lt;/a&gt;
+</pre>
 
 <h2>Styles and the Twitter Bootstrap framework</h2>
 <p>This application template makes use of the LESS implemetation of Twitter's Bootstrap.</p>
