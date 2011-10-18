@@ -1,10 +1,12 @@
-<!-- 
-      archive.php
-      d13design
-      
-      Created by Dave Waller on 2011-10-11.
-      Copyright 2011 Dave Waller. All rights reserved.
- -->
+<?php 
+// 
+//  archive.php
+//  d13design
+//  
+//  Created by Dave Waller on 2011-10-18.
+//  Copyright 2011 Dave Waller. All rights reserved.
+// 
+?>
 
 <div class="page-header" style="margin-top:50px;">
 	<h1><?php echo ucfirst($a['section']); ?></h1>

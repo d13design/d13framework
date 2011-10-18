@@ -1,10 +1,12 @@
-<!-- 
-      404.php
-      d13design
-      
-      Created by Dave Waller on 2011-10-11.
-      Copyright 2011 Dave Waller. All rights reserved.
- -->
+<?php 
+// 
+//  404.php
+//  d13design
+//  
+//  Created by Dave Waller on 2011-10-18.
+//  Copyright 2011 Dave Waller. All rights reserved.
+// 
+?>
 
 <!-- Example promo-panel -->
 <div class="hero-unit">

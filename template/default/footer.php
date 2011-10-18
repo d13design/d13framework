@@ -1,10 +1,12 @@
-<!-- 
-      footer.php
-      d13design
-      
-      Created by Dave Waller on 2011-10-11.
-      Copyright 2011 Dave Waller. All rights reserved.
- -->
+<?php 
+// 
+//  footer.php
+//  d13design
+//  
+//  Created by Dave Waller on 2011-10-18.
+//  Copyright 2011 Dave Waller. All rights reserved.
+// 
+?>
 
 			<footer>
 				<p>All content is &copy; <?php echo SITE_NAME; ?> -- <?php html_link('mailto:'.SITE_EMAIL, SITE_AUTHOR); ?></p>
