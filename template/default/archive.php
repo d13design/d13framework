@@ -16,12 +16,15 @@
 </div>
 
 <?php
+if(!isset($a['qs'])) $a['qs']=0;
+
 $path = "content/".$a['section'];
 $count = 0;
+$pagelist = array();
 $dir_handle = @opendir($path) or die("Unable to open $path"); 
 while (false !== ($file = readdir($dir_handle))) {
     if ($file != "." && $file != "..") {
-        require($path.'/'.$file);
+        $pagelist[] = $path.'/'.$file;
 		$count++;
     }
 }
@@ -29,4 +32,13 @@ closedir($dir_handle);
 if($count==0){
 	require_once('template/'.TEMPLATE.'/empty.php');
 }
+
+for($x=$a['qs'];$x<$a['qs']+PAGE_COUNT;$x++){
+	if($pagelist[$x]){
+		require($pagelist[$x]);
+	}
+}
+
+pagination($pagelist,$a['section'],$a['qs']);
+
 ?>

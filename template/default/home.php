@@ -18,6 +18,39 @@
 	<p>You can edit the contents of this page in <strong>template/<?php echo TEMPLATE; ?>/home.php</strong></p>
 </div>
 
+<h2>Modifying your .htaccess file</h2>
+<p>Your .htaccess file should be ready to rock but, if this is a new install of this framework, you may need to change your base path. Just swap "framework" on line 2 for whatever your real base path is:</p>
+<pre class="prettyprint linenums">
+RewriteEngine On
+RewriteBase /framework/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+</pre>
+
+<h2>Modifying your site config</h2>
+<p>Your site config is held in the /lib/config.inc.php file - make any changes you need in these lines:</p>
+<pre class="prettyprint linenums">
+define("BASE_PATH","http://127.0.0.1"); //The root domain for your site
+$path = "/framework"; //The folder where your site is held (site root)
+
+//Define site URLs
+define("SITE_URL",BASE_PATH.$path);
+define("ASSETS_URL",BASE_PATH.$path.'/assets'); //The folder, from the site root where assets are held
+
+define("SITE_NAME",'framework');  //Your site name
+define("SITE_AUTHOR",'Dave Waller'); //Your name, as the site owner
+define("SITE_EMAIL",'site@d13design.co.uk'); //A contact email address
+
+define("TEMPLATE",'default'); //The site template to use - the folder name of the template within the "template" folder
+
+define("PAGE_COUNT", 3); //The number of items to show per page when using pagination
+</pre>
+
+<div class="page-header" style="margin-top:20px;">
+	<h1>Using the site-builder helpers</h1>
+</div>
+
 <h2>Adding images</h2>
 <p>You can add images to your codse using the simple html_img helper:</p>
 <pre class="prettyprint linenums">
@@ -99,6 +132,37 @@ $str = "Hello World";
 echo $str;
 // Outputs Hello World
 ?&gt;
+</pre>
+
+<h2>Pagination</h2>
+<p>You can paginate through all of the content within a given section using the pagination helper. You can also adjust the number of items to show on a page using the PAGE_COUNT variable in your config file:</p>
+<pre class="prettyprint linenums">
+&lt;?php pagination($pagelist,$a['section'],$a['qs'],'first','previous','next','last'); ?&gt; //pagelist is an array of content
+</pre>
+<pre class="prettyprint linenums">
+&lt;p class="pagination"&gt;
+  &lt;a title="First page" href="http://d13design/misc?0"&gt;first&lt;/a&gt;&amp;nbsp;
+  &lt;a title="Previous page" href="http://d13design/misc?3"&gt;previous&lt;/a&gt;&amp;nbsp;
+  &lt;a title="Page 1" href="http://d13design/misc?0"&gt;1&lt;/a&gt;&amp;nbsp;
+  &lt;a title="Page 2" href="http://d13design/misc?3"&gt;2&lt;/a&gt;&amp;nbsp;
+  &lt;span class="current-page"&gt;3&lt;/span&gt;&amp;nbsp;
+  &lt;a title="Next page" href="http://d13design/misc?3"&gt;next&lt;/a&gt;&amp;nbsp;
+  &lt;a title="Last page" href="http://d13design/misc?15"&gt;last&lt;/a&gt;
+&lt;/p&gt;
+</pre>
+<pre class="prettyprint linenums">
+&lt;?php pagination($pagelist,$a['section'],$a['qs']); ?&gt; //pagelist is an array of content
+</pre>
+<pre class="prettyprint linenums">
+&lt;p class="pagination"&gt;
+  &lt;a title="First page" href="http://d13design/misc?0"&gt;&amp;lt;&amp;lt;&lt;/a&gt;&amp;nbsp;
+  &lt;a title="Previous page" href="http://d13design/misc?3"&gt;&amp;lt;&lt;/a&gt;&amp;nbsp;
+  &lt;a title="Page 1" href="http://d13design/misc?0"&gt;1&lt;/a&gt;&amp;nbsp;
+  &lt;a title="Page 2" href="http://d13design/misc?3"&gt;2&lt;/a&gt;&amp;nbsp;
+  &lt;span class="current-page"&gt;3&lt;/span&gt;&amp;nbsp;
+  &lt;a title="Next page" href="http://d13design/misc?3"&gt;&amp;gt;&lt;/a&gt;&amp;nbsp;
+  &lt;a title="Last page" href="http://d13design/misc?15"&gt;&amp;gt;&amp;gt;&lt;/a&gt;
+&lt;/p&gt;
 </pre>
 
 <h2>Example</h2>

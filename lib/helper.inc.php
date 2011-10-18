@@ -104,4 +104,46 @@ function trimmer($str, $len=12, $extra='&#133;'){
 }
 
 
+
+
+
+
+
+function pagination($pagelist,$section,$qs,$first="&lt;&lt;",$prev="&lt;",$next="&gt;",$last="&gt;&gt"){
+	if(count($pagelist) > PAGE_COUNT){
+		//PAGINATION
+		$items = array();
+		//First page and previous links...
+		if($qs==0){
+			$items[] = $first.'&nbsp;';
+			$items[] = $prev.'&nbsp;';
+		}else{
+			$items[] = '<a title="First page"    href="'.create_path($section).'">'.$first.'</a>&nbsp;';
+			$items[] = '<a title="Previous page" href="'.create_path($section.'?'.($qs-PAGE_COUNT)).'">'.$prev.'</a>&nbsp;';
+		}
+		//Page links...
+		for($x=0;$x<ceil(count($pagelist)/PAGE_COUNT);$x++){
+			if($x*PAGE_COUNT==$qs){
+				$items[] = '<span class="current-page">'.($x+1).'</span>&nbsp;';
+			}else{
+				$items[] = '<a title="Page '.($x+1).'" href="'.create_path($section.'?'.($x*PAGE_COUNT)).'">'.($x+1).'</a>&nbsp;';
+			}
+		}
+		//Next and last links...
+		if($qs+PAGE_COUNT >= count($pagelist)){
+			$items[] = $next.'&nbsp;';
+			$items[] = $last;
+		}else{
+			$items[] = '<a title="Next page"  href="'.create_path($section.'?'.($qs+PAGE_COUNT)).'">'.$next.'</a>&nbsp;';
+			$items[] = '<a title="Last page"  href="'.create_path($section.'?'.(($x-1)*PAGE_COUNT)).'">'.$last.'</a>';
+		}
+		//Render pagination...
+		echo '<p class="pagination">';
+		foreach($items as $item){
+			echo $item;
+		}
+		echo '</p>';
+	}
+}
+
 ?>
