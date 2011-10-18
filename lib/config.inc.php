@@ -7,8 +7,8 @@
 //  Copyright 2011 Dave Waller. All rights reserved.
 // 
 
-define("BASE_PATH","http://d13design");
-$path = "";
+define("BASE_PATH","http://localhost");
+$path = "/framework";
 
 //Define site URLs
 define("SITE_URL",BASE_PATH.$path);
@@ -20,6 +20,6 @@ define("SITE_EMAIL",'site@d13design.co.uk');
 
 define("TEMPLATE",'default');
 
-define("PAGE_COUNT", 3);
+define("PAGE_COUNT", 5);
 
 ?>
