@@ -53,6 +53,7 @@
 					<ul>
 						<li class="<?php if($a['section']=='') echo 'active'; ?>"><?php html_link(create_path(),'Home'); ?></li>
 						<?php list_sections(); ?>
+						<li class="<?php if($a['section']=='404') echo 'active'; ?>"><?php html_link(create_path('404'),'404'); ?></li>
 					</ul>
 					<ul class="nav secondary-nav">
 						<?php list_pages(); ?>
