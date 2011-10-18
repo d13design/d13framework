@@ -9,7 +9,7 @@
 ?>
 
 <!-- Example promo-panel -->
-<div class="hero-unit">
+<div class="hero-unit" style="margin-top:50px;">
 	<h1>Welcome to <?php echo SITE_NAME; ?>!</h1>
 	<p>Nerd note: A databaseless, PHP content management system driven entirely by files and incorporating the wonderiferous Twitter Bootstrap HTML 5 style framework, Mixinised with Less.</p>
 	<!--<p><?php html_link(create_path('#'),'Learn more &raquo;','btn primary large'); ?></p>-->
@@ -21,7 +21,7 @@
 </div>
 
 <h2>Modifying your .htaccess file</h2>
-<p>Your .htaccess file should be ready to rock but, if this is a new install of this framework, you may need to change your base path. Just swap "framework" on line 2 for whatever your real base path is:</p>
+<p>Your <span class="label notice">.htaccess</span> file should be ready to rock but, if this is a new install of this framework, you may need to change your base path. Just swap "framework" on line 2 for whatever your real base path is:</p>
 <pre class="prettyprint linenums">
 RewriteEngine On
 RewriteBase /framework/
@@ -31,7 +31,7 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 </pre>
 
 <h2>Modifying your site config</h2>
-<p>Your site config is held in the /lib/config.inc.php file - make any changes you need in these lines:</p>
+<p>Your site config is held in the <span class="label notice">/lib/config.inc.php</span> file - make any changes you need in these lines:</p>
 <pre class="prettyprint linenums">
 define("BASE_PATH","http://127.0.0.1"); //The root domain for your site
 $path = "/framework"; //The folder where your site is held (site root)
@@ -54,17 +54,17 @@ define("PAGE_COUNT", 3); //The number of items to show per page when using pagin
 </div>
 
 <h2>Adding images</h2>
-<p>You can add images to your codse using the simple html_img helper:</p>
+<p>You can add images to your codse using the simple <span class="label">html_img</span> helper:</p>
 <pre class="prettyprint linenums">
 &lt;?php html_img('filename', 'imageClass', 'altTag', 'linkURL', 'linkClass', 'title', 'target'); ?&gt;</pre>
 
 <h2>Adding links</h2>
-<p>You can add links to your code using the simple html_link helper:</p>
+<p>You can add links to your code using the simple <span class="label">html_link</span> helper:</p>
 <pre class="prettyprint linenums">
 &lt;?php html_link('linkURL', 'linkText', 'linkClass', 'title', 'target', 'span'); ?&gt;</pre>
 
 <h2>Generating paths</h2>
-<p>You can generate internal paths using the create_path helper:</p>
+<p>You can generate internal paths using the <span class="label">create_path</span> helper:</p>
 <pre class="prettyprint linenums">
 &lt;?php create_path('section', 'page', 'content'); ?&gt;</pre>
 <pre class="prettyprint linenums">
@@ -73,19 +73,19 @@ define("PAGE_COUNT", 3); //The number of items to show per page when using pagin
 </pre>
 
 <h2>Formatting archive dates</h2>
-<p>You can convert "2011-09" to "September 2011" using the pretty_date helper:</p>
+<p>You can convert "2011-09" to "September 2011" using the <span class="label">pretty_date</span> helper:</p>
 <pre class="prettyprint linenums">
 &lt;?php echo pretty_date('2011-09'); ?&gt;</pre>
 
 <h2>Trimming text</h2>
-<p>You can trim long strings of text to a given number of words using the trimmer helper:</p>
+<p>You can trim long strings of text to a given number of words using the <span class="label">trimmer</span> helper:</p>
 <pre class="prettyprint linenums">
 &lt;?php echo trimmer('The quick brown fox jumped over the lazy dog', 8, '&amp;#133;'); ?&gt;</pre>
 <pre class="prettyprint linenums">
 returns 'The quick brown fox jumped over the lazy &#133;'</pre>
 
 <h2>Page listing</h2>
-<p>You can create a list of all of the content pages in the content/pages folder using the list_pages helper:</p>
+<p>You can create a list of all of the content pages in the content/pages folder using the <span class="label">list_pages</span> helper:</p>
 <pre class="prettyprint linenums">
 &lt;ul&gt;
   &lt;?php list_pages(); ?&gt;
@@ -97,7 +97,7 @@ returns 'The quick brown fox jumped over the lazy &#133;'</pre>
 &lt;/ul&gt;</pre>
 
 <h2>Section listing</h2>
-<p>You can create a list of all of the content sections in the content folder using the list_sections helper:</p>
+<p>You can create a list of all of the content sections in the content folder using the <span class="label">list_sections</span> helper:</p>
 <pre class="prettyprint linenums">
 &lt;ul&gt;
   &lt;?php list_sections(); ?&gt;
@@ -110,7 +110,7 @@ returns 'The quick brown fox jumped over the lazy &#133;'</pre>
 &lt;/ul&gt;</pre>
 
 <h2>Stylesheets and Javascripts</h2>
-<p>You can use the html_css and html_js helpers to easily add CSS and JS files to your templates:</p>
+<p>You can use the <span class="label">html_css</span> and <span class="label">html_js</span> helpers to easily add CSS and JS files to your templates:</p>
 <pre class="prettyprint linenums">
 &lt;?php html_css('styles.css'); ?&gt;
 &lt;?php html_js('jquery.js'); ?&gt;</pre>
@@ -137,35 +137,23 @@ echo $str;
 </pre>
 
 <h2>Pagination</h2>
-<p>You can paginate through all of the content within a given section using the pagination helper. You can also adjust the number of items to show on a page using the PAGE_COUNT variable in your config file:</p>
+<p>You can paginate through all of the content within a given section using the <span class="label">pagination</span> helper (this uses the standard Twitter Bootstrap markup and styling for pagination). You can also adjust the number of items to show on a page using the <span class="label">PAGE_COUNT</span> variable in your config file:</p>
 <pre class="prettyprint linenums">
 &lt;?php pagination($pagelist,$a['section'],$a['qs'],'first','previous','next','last'); ?&gt; //pagelist is an array of content
 </pre>
-<pre class="prettyprint linenums">
-&lt;p class="pagination"&gt;
-  &lt;a title="First page" href="http://d13design/misc?0"&gt;first&lt;/a&gt;&amp;nbsp;
-  &lt;a title="Previous page" href="http://d13design/misc?3"&gt;previous&lt;/a&gt;&amp;nbsp;
-  &lt;a title="Page 1" href="http://d13design/misc?0"&gt;1&lt;/a&gt;&amp;nbsp;
-  &lt;a title="Page 2" href="http://d13design/misc?3"&gt;2&lt;/a&gt;&amp;nbsp;
-  &lt;span class="current-page"&gt;3&lt;/span&gt;&amp;nbsp;
-  &lt;a title="Next page" href="http://d13design/misc?3"&gt;next&lt;/a&gt;&amp;nbsp;
-  &lt;a title="Last page" href="http://d13design/misc?15"&gt;last&lt;/a&gt;
-&lt;/p&gt;
-</pre>
-<pre class="prettyprint linenums">
-&lt;?php pagination($pagelist,$a['section'],$a['qs']); ?&gt; //pagelist is an array of content
-</pre>
-<pre class="prettyprint linenums">
-&lt;p class="pagination"&gt;
-  &lt;a title="First page" href="http://d13design/misc?0"&gt;&amp;lt;&amp;lt;&lt;/a&gt;&amp;nbsp;
-  &lt;a title="Previous page" href="http://d13design/misc?3"&gt;&amp;lt;&lt;/a&gt;&amp;nbsp;
-  &lt;a title="Page 1" href="http://d13design/misc?0"&gt;1&lt;/a&gt;&amp;nbsp;
-  &lt;a title="Page 2" href="http://d13design/misc?3"&gt;2&lt;/a&gt;&amp;nbsp;
-  &lt;span class="current-page"&gt;3&lt;/span&gt;&amp;nbsp;
-  &lt;a title="Next page" href="http://d13design/misc?3"&gt;&amp;gt;&lt;/a&gt;&amp;nbsp;
-  &lt;a title="Last page" href="http://d13design/misc?15"&gt;&amp;gt;&amp;gt;&lt;/a&gt;
-&lt;/p&gt;
-</pre>
+<div class="pagination">
+  <ul>
+    <li class="prev disabled"><a href="#">&larr;</a></li>
+    <li class="disabled"><a href="#">&lt;</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li class=""><a href="#">&gt;</a></li>
+    <li class="next"><a href="#">&rarr;</a></li>
+  </ul>
+</div>
 
 <h2>Example</h2>
 <p>An example of an image linking to a page followed by a text link to an external site:</p>

@@ -73,7 +73,7 @@ function list_pages(){
 /* Helper to list content sections */
 function list_sections(){
 	$path = "content"; 
-	$dir_handle = @opendir($path.'/'.$month) or die("Unable to open $path"); 
+	$dir_handle = @opendir($path) or die("Unable to open $path"); 
 	while (false !== ($file = readdir($dir_handle))) {
         if ($file != "." && $file != ".." && $file != 'pages') {
             echo '<li class="'.$class.'">';
@@ -103,47 +103,43 @@ function trimmer($str, $len=12, $extra='&#133;'){
 	return $op;
 }
 
-
-
-
-
-
-
-function pagination($pagelist,$section,$qs,$first="&lt;&lt;",$prev="&lt;",$next="&gt;",$last="&gt;&gt"){
+/* Helper to create pagination based on an array of content files */
+function pagination($pagelist,$section,$qs,$first="&larr;",$prev="&lt;",$next="&gt;",$last="&rarr;"){
 	if(count($pagelist) > PAGE_COUNT){
 		//PAGINATION
 		$items = array();
 		//First page and previous links...
 		if($qs==0){
-			$items[] = $first.'&nbsp;';
-			$items[] = $prev.'&nbsp;';
+			$items[] = '<li class="prev disabled"><a href="#">'.$first.'</a></li>';
+			$items[] = '<li class="disabled"><a href="#">'.$prev.'</a></li>';
 		}else{
-			$items[] = '<a title="First page"    href="'.create_path($section).'">'.$first.'</a>&nbsp;';
-			$items[] = '<a title="Previous page" href="'.create_path($section.'?'.($qs-PAGE_COUNT)).'">'.$prev.'</a>&nbsp;';
+			$items[] = '<li class="prev"><a title="First page" href="'.create_path($section).'">'.$first.'</a></li>';
+			$items[] = '<li><a title="Previous page" href="'.create_path($section.'?'.($qs-PAGE_COUNT)).'">'.$prev.'</a></li>';
 		}
 		//Page links...
 		for($x=0;$x<ceil(count($pagelist)/PAGE_COUNT);$x++){
 			if($x*PAGE_COUNT==$qs){
-				$items[] = '<span class="current-page">'.($x+1).'</span>&nbsp;';
+				$items[] = '<li class="active"><a href="">'.($x+1).'</a></li>';
 			}else{
-				$items[] = '<a title="Page '.($x+1).'" href="'.create_path($section.'?'.($x*PAGE_COUNT)).'">'.($x+1).'</a>&nbsp;';
+				$items[] = '<li><a title="Page '.($x+1).'" href="'.create_path($section.'?'.($x*PAGE_COUNT)).'">'.($x+1).'</a></li>';
 			}
 		}
 		//Next and last links...
 		if($qs+PAGE_COUNT >= count($pagelist)){
-			$items[] = $next.'&nbsp;';
-			$items[] = $last;
+			$items[] = '<li class="disabled"><a href="#">'.$next.'</a></li>';
+			$items[] = '<li class="next disabled"><a href="#">'.$last.'</a></li>';
 		}else{
-			$items[] = '<a title="Next page"  href="'.create_path($section.'?'.($qs+PAGE_COUNT)).'">'.$next.'</a>&nbsp;';
-			$items[] = '<a title="Last page"  href="'.create_path($section.'?'.(($x-1)*PAGE_COUNT)).'">'.$last.'</a>';
+			$items[] = '<li><a title="Next page" href="'.create_path($section.'?'.($qs+PAGE_COUNT)).'">'.$next.'</a></li>';
+			$items[] = '<li class="next"><a title="Last page" href="'.create_path($section.'?'.(($x-1)*PAGE_COUNT)).'">'.$last.'</a></li>';
 		}
 		//Render pagination...
-		echo '<p class="pagination">';
+		echo '<div class="pagination"><ul>';
 		foreach($items as $item){
 			echo $item;
 		}
-		echo '</p>';
+		echo '</ul></div>';
 	}
 }
+
 
 ?>

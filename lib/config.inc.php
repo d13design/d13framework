@@ -20,6 +20,6 @@ define("SITE_EMAIL",'site@d13design.co.uk');
 
 define("TEMPLATE",'default');
 
-define("PAGE_COUNT", 5);
+define("PAGE_COUNT", 10);
 
 ?>

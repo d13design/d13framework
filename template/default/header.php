@@ -21,12 +21,20 @@
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
-		<?php html_css('less/bootstrap.less','stylesheet/less'); ?>
+		<?php //html_css('less/bootstrap.less','stylesheet/less'); ?>
+		<?php html_css('bootstrap.min.css'); ?>
 		<?php html_css('prettify.css'); ?>
 
-		<?php html_js('less-1.1.3.min.js'); ?>
+		<?php //html_js('less-1.1.3.min.js'); ?>
 		<?php html_js('jquery-1.6.2.min.js'); ?>
 		<?php html_js('prettify.js'); ?>
+		<?php html_js('bootstrap/bootstrap-dropdown.js'); ?> 
+		<?php html_js('bootstrap/bootstrap-modal.js'); ?> 
+		<?php html_js('bootstrap/bootstrap-popover.js'); ?> 
+		<?php html_js('bootstrap/bootstrap-scrollspy.js'); ?> 
+		<?php html_js('bootstrap/bootstrap-tabs.js'); ?> 
+		<?php html_js('bootstrap/bootstrap-twipsy.js'); ?>
+		
 		<?php html_js('application.js'); ?>  
 		
 		<link href="<?php echo ASSETS_URL; ?>/images/ico/favicon.ico" rel="shortcut icon">
