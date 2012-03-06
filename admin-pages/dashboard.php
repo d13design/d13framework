@@ -1,4 +1,4 @@
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1>Administration dashboard</h1>
 </div>
 

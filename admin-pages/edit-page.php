@@ -9,10 +9,10 @@
 	$result = mysql_query("UPDATE pages SET title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', contents='".urlencode($string)."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
-	<div class="page-header" style="margin-top:50px;">
+	<div class="page-header">
 		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Page updated</h1>
 	</div>
-	<p>Your page <strong><?php echo $_POST['title']; ?></strong> was successfully updated.</p>
+	<div class="alert alert-success">Your page <strong><?php echo $_POST['title']; ?></strong> was successfully updated.</div>
 	<p><?php html_link(create_path('admin','view-pages'), 'View your pages', 'btn btn-primary'); ?></p>
 <?php }else{
 	$page = array();
@@ -30,7 +30,7 @@
         );
 	}
 ?>
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Edit page</h1>
 </div>
 

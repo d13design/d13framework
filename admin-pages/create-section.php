@@ -6,16 +6,16 @@
 	$result = mysql_query("INSERT INTO sections (title,slug) VALUES ('".urlencode($_POST['title'])."','".$_POST['slug']."');");
 	mysql_close($connection);
 	?>
-	<div class="page-header" style="margin-top:50px;">
+	<div class="page-header">
 		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Section created</h1>
 	</div>
-	<p>Your section <strong><?php echo $_POST['title']; ?></strong> was successfully created.</p>
+	<div class="alert alert-success">Your section <strong><?php echo $_POST['title']; ?></strong> was successfully created.</div>
 	<p>
 	<?php html_link(create_path('admin','create-section'), 'Create another section', 'btn btn-primary'); ?>
 	<?php html_link(create_path('admin','view-sections'), 'View your sections', 'btn btn-primary'); ?>
 	</p>
 <?php }else{ ?>
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Create a new section</h1>
 </div>
 

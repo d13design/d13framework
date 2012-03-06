@@ -9,7 +9,7 @@
 ?>
 
 <!-- Example promo-panel -->
-<div class="hero-unit" style="margin-top:50px;">
+<div class="hero-unit">
 	<h1>Welcome to <?php echo SITE_NAME; ?>!</h1>
 	<p>Nerd note: A <s>databaseless,</s>* PHP content management system incorporating the wonderiferous Twitter Bootstrap HTML 5 style framework, Mixinised with Less.</p>
 	<p><?php html_link(create_path('#'),'* Now with added database goodness','btn btn-primary btn-large'); ?></p>

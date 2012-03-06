@@ -11,7 +11,7 @@
 
 <div class="row">
 	<div class="span8">
-		<div class="page-header" style="margin-top:50px;">
+		<div class="page-header">
 			<h1><?php html_link(create_path($article['section_slug']),$article['section_title']); ?> &gt; <?php echo $article['title']; ?></h1>
 		</div>
 		

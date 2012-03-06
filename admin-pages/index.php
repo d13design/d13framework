@@ -1,5 +1,5 @@
 <form action="<?php echo SITE_URL; ?>/admin-pages/login.php" method="post" class="well">
-	<div class="page-header" style="margin-top:50px;">
+	<div class="page-header">
 		<h1>Administration login</h1>
 	</div>
 	

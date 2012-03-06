@@ -6,10 +6,10 @@
 	$result = mysql_query("UPDATE sections SET title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
-	<div class="page-header" style="margin-top:50px;">
+	<div class="page-header">
 		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Section updated</h1>
 	</div>
-	<p>Your section <strong><?php echo $_POST['title']; ?></strong> was successfully updated.</p>
+	<div class="alert alert-success">Your section <strong><?php echo $_POST['title']; ?></strong> was successfully updated.</div>
 	<p><?php html_link(create_path('admin','view-sections'), 'View your sections', 'btn btn-primary'); ?></p>
 <?php }else{ 
 	$section = array();
@@ -26,7 +26,7 @@
         );
 	}
 ?>
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Edit section</h1>
 </div>
 

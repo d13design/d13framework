@@ -1,4 +1,4 @@
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Template help documents</h1>
 </div>
 
@@ -291,7 +291,7 @@ foreach($my_shots->shots as $shot){
 &lt;?php echo get_status('d13design'); ?&gt;</pre>
 
 
-<div class="page-header" style="margin-top:70px;">
+<div class="page-header">
 	<h1>Using the default style framework</h1>
 </div>
 

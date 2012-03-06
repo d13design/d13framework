@@ -9,10 +9,10 @@
 	$result = mysql_query("UPDATE articles SET section_id=".$_POST['section'].", title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', synopsis='".urlencode($_POST['synopsis'])."', contents='".urlencode($string)."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
-	<div class="page-header" style="margin-top:50px;">
+	<div class="page-header">
 		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Article updated</h1>
 	</div>
-	<p>Your article <strong><?php echo $_POST['title']; ?></strong> was successfully updated.</p>
+	<div class="alert alert-success">Your article <strong><?php echo $_POST['title']; ?></strong> was successfully updated.</div>
 	<p><?php html_link(create_path('admin','view-articles'), 'View your articles', 'btn btn-primary'); ?></p>
 <?php }else{
 	$article = array();
@@ -33,7 +33,7 @@
         );
 	}
 ?>
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Edit article</h1>
 </div>
 

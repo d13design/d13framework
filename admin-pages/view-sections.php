@@ -1,4 +1,4 @@
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; View sections</h1>
 </div>
 
@@ -12,7 +12,7 @@
 </ul>
 
 <p style="text-align:right;">
-	<a href="<?php echo SITE_URL; ?>/admin/create-section" title="Create a new section" class="btn btn-inverse"><i class="icon-asterisk icon-white"></i> Create a new section</a>
+	<a href="<?php echo SITE_URL; ?>/admin/create-section" title="Create a new section" class="btn btn-inverse"><i class="icon-star icon-white"></i> Create a new section</a>
 </p>
 
 <table class="table table-striped table-bordered table-condensed">
@@ -38,7 +38,9 @@
      		echo '<td><div class="btn-toolbar" style="margin:0px;"><div class="btn-group">';
      		echo '<a class="btn btn-primary" href="'.SITE_URL.'/admin/edit-section/'.$row['id'].'" title="Edit '.urldecode($row['title']).'"><i class="icon-pencil icon-white"></i></a>';
      		if($row['id']!=1){
-     			echo '<a class="btn btn-danger" href="#" onclick="confirmer(\''.SITE_URL.'/admin-pages/delete.php?id='.$row['id'].'&type=section\',\''.urldecode($row['title']).'\'); return false;" title="Delete '.urldecode($row['title']).'"><i class="icon-remove icon-white"></i></a>';
+     			echo '<a class="btn btn-danger" href="#" onclick="confirmer(\''.SITE_URL.'/admin-pages/delete.php?id='.$row['id'].'&type=section\',\''.urldecode($row['title']).'\'); return false;" title="Delete '.urldecode($row['title']).'"><i class="icon-trash icon-white"></i></a>';
+     		}else{
+     			echo '<span class="btn"><i class="icon-trash icon-white"></i></span>';
      		}
      		echo '</div></div></td></tr>';
 		}

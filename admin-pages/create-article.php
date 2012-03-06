@@ -9,16 +9,16 @@
 	$result = mysql_query("INSERT INTO articles (section_id,title,slug,synopsis,contents) VALUES (".urlencode($_POST['section']).",'".urlencode($_POST['title'])."','".$_POST['slug']."','".urlencode($_POST['synopsis'])."','".urlencode($string)."');");
 	mysql_close($connection);
 	?>
-	<div class="page-header" style="margin-top:50px;">
+	<div class="page-header">
 		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Article created</h1>
 	</div>
-	<p>Your article <strong><?php echo $_POST['title']; ?></strong> was successfully created.</p>
+	<div class="alert alert-success">Your article <strong><?php echo $_POST['title']; ?></strong> was successfully created.</div>
 	<p>
 	<?php html_link(create_path('admin','create-article'), 'Create another article', 'btn btn-primary'); ?>
 	<?php html_link(create_path('admin','view-articles'), 'View your articles', 'btn btn-primary'); ?>
 	</p>
 <?php }else{ ?>
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Create a new article</h1>
 </div>
 

@@ -11,7 +11,7 @@
 
 <div class="row">
 	<div class="span8">
-		<div class="page-header" style="margin-top:50px;">
+		<div class="page-header">
 			<h1><?php echo $page['title']; ?></h1>
 		</div>
 		

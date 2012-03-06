@@ -52,9 +52,9 @@ if(!ALLOW_REGISTER){
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container" style="margin-top:50px;">
 			<form action="<?php echo SITE_URL; ?>/admin-pages/register.php" method="post" class="well">
-				<div class="page-header" style="margin-top:50px;">
+				<div class="page-header">
 					<h1>Admin registration</h1>
 				</div>
 				

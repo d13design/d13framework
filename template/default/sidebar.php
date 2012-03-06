@@ -8,7 +8,7 @@
 // 
 ?>
 
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1>Side bar</h1>
 </div>
 

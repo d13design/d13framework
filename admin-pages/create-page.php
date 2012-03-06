@@ -9,16 +9,16 @@
 	$result = mysql_query("INSERT INTO pages (title,slug,contents) VALUES ('".urlencode($_POST['title'])."','".$_POST['slug']."','".urlencode($string)."');");
 	mysql_close($connection);
 	?>
-	<div class="page-header" style="margin-top:50px;">
+	<div class="page-header">
 		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Page created</h1>
 	</div>
-	<p>Your page <strong><?php echo $_POST['title']; ?></strong> was successfully created.</p>
+	<div class="alert alert-success">Your page <strong><?php echo $_POST['title']; ?></strong> was successfully created.</div>
 	<p>
 	<?php html_link(create_path('admin','create-page'), 'Create another page', 'btn btn-primary'); ?>
 	<?php html_link(create_path('admin','view-pages'), 'View your pages', 'btn btn-primary'); ?>
 	</p>
 <?php }else{ ?>
-<div class="page-header" style="margin-top:50px;">
+<div class="page-header">
 	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Create a new page</h1>
 </div>
 

@@ -10,7 +10,7 @@
 
 <div class="row">
 	<div class="span8">
-		<div class="page-header" style="margin-top:50px;">
+		<div class="page-header">
 			<h1><?php echo get_section($a['section']); ?></h1>
 		</div>
 		
