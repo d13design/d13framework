@@ -1,4 +1,4 @@
-<?php if(isset($_POST['title']) && isset($_POST['slug']) && isset($_POST['section']) && isset($_POST['synopsis']) && isset($_POST['contents']) && $_POST['title']!='' && $_POST['slug']!='' && $_POST['section']!='' && $_POST['synopsis']!='' && $_POST['contents']!=''){
+<?php if(isset($_POST['id']) && isset($_POST['title']) && isset($_POST['slug']) && isset($_POST['section']) && isset($_POST['synopsis']) && isset($_POST['contents']) && $_POST['title']!='' && $_POST['slug']!='' && $_POST['section']!='' && $_POST['synopsis']!='' && $_POST['contents']!=''){
 
 	$div = array("div"); $p = array("p");
 	$string = (str_replace($div,$p,$_POST['contents']));
@@ -6,20 +6,35 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("INSERT INTO articles (section_id,title,slug,synopsis,contents) VALUES (".urlencode($_POST['section']).",'".urlencode($_POST['title'])."','".$_POST['slug']."','".urlencode($_POST['synopsis'])."','".urlencode($string)."');");
+	$result = mysql_query("UPDATE articles SET section_id=".$_POST['section'].", title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', synopsis='".urlencode($_POST['synopsis'])."', contents='".urlencode($string)."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
 	<div class="page-header" style="margin-top:50px;">
-		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Article created</h1>
+		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Article updated</h1>
 	</div>
-	<p>Your article <strong><?php echo $_POST['title']; ?></strong> was successfully created.</p>
-	<p>
-	<?php html_link(create_path('admin','create-article'), 'Create another article', 'btn btn-primary'); ?>
-	<?php html_link(create_path('admin','view-articles'), 'View your articles', 'btn btn-primary'); ?>
-	</p>
-<?php }else{ ?>
+	<p>Your article <strong><?php echo $_POST['title']; ?></strong> was successfully updated.</p>
+	<p><?php html_link(create_path('admin','view-articles'), 'View your articles', 'btn btn-primary'); ?></p>
+<?php }else{
+	$article = array();
+	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
+	if (!$connection){ die('Could not connect: ' . mysql_error()); }
+	mysql_select_db(DB_NAME, $connection);
+	$result = mysql_query("SELECT * FROM articles WHERE id=".$a['items'][0]);
+	mysql_close($connection);
+	while($row = mysql_fetch_array($result)){
+        $article[] = array(
+        	'id'			=> $row['id'],
+        	'section_id'	=> $row['section_id'],
+        	'title'			=> urldecode($row['title']),
+        	'slug'			=> $row['slug'],
+        	'synopsis'		=> urldecode($row['synopsis']),
+        	'contents'		=> urldecode($row['contents']),
+        	'created'		=> $row['created'],
+        );
+	}
+?>
 <div class="page-header" style="margin-top:50px;">
-	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Create a new article</h1>
+	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Edit article</h1>
 </div>
 
 <ul class="nav nav-tabs">
@@ -33,18 +48,19 @@
 
 <form class="form-horizontal" action="" method="post" id="form">
 	<fieldset>
-		<legend>Your new article</legend>
+		<legend><?php echo $article[0]['title']; ?></legend>
 		<div class="control-group">
 			<label class="control-label" for="title">Title</label>
 			<div class="controls">
-				<input type="text" class="input-xlarge span6" id="title" name="title" onkeyup="updateSlug();">
+				<input type="hidden" name="id" id="id" value="<?php echo $article[0]['id']; ?>">
+				<input type="text" class="input-xlarge span6" id="title" name="title" onkeyup="updateSlug();" value="<?php echo $article[0]['title']; ?>">
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="slug">Slug</label>
 			<div class="controls">
 				<div class="input-append">
-					<input type="text" class="input-xlarge span5" id="slug" name="slug" onkeyup="checkSlug();">
+					<input type="text" class="input-xlarge span5" id="slug" name="slug" onkeyup="checkSlug();" value="<?php echo $article[0]['slug']; ?>">
 					<span class="add-on" id="slug-check"><i class="icon-ban-circle"></i></span>
 				</div>
 				<p class="help-block">Don't use spaces or special characters - this slug is used to create your article URL</p>
@@ -60,7 +76,8 @@
 					mysql_select_db(DB_NAME, $connection);
 					$r = mysql_query("SELECT * FROM sections");
 					while($row = mysql_fetch_array($r)){
-						echo '<option value="'.$row['id'].'">'.urldecode($row['title']).'</option>';
+						if($article[0]['section_id']==$row['id']){ $sel = ' selected'; }else{ $sel = ''; }
+						echo '<option value="'.$row['id'].'" '.$sel.'>'.urldecode($row['title']).'</option>';
 					}
 					mysql_close($connection);
 					?>
@@ -70,18 +87,18 @@
 		<div class="control-group">
 			<label class="control-label" for="synopsis">Synopsis</label>
 			<div class="controls">
-				<textarea id="synopsis" name="synopsis" class="input-xlarge span6"></textarea>
+				<textarea id="synopsis" name="synopsis" class="input-xlarge span6"><?php echo $article[0]['synopsis']; ?></textarea>
 				<p class="help-block">A short intro to your article with no HTML</p>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="contents">Contents</label>
 			<div class="controls">
-				<textarea id="contents" name="contents" class="input-xlarge span6" rows="8"><div>Add your article contents here</div></textarea>
+				<textarea id="contents" name="contents" class="input-xlarge span6" rows="8"><?php echo $article[0]['contents']; ?></textarea>
 			</div>
 		</div>
 		<div class="form-actions">
-			<input type="button" class="btn btn-primary" value="Create article" onclick="validate();">
+			<input type="button" class="btn btn-primary" value="Update article" onclick="validate();">
 			<?php html_link(create_path('admin','view-articles'), 'Cancel', 'btn'); ?>
 		</div>
 	</fieldset>
@@ -117,7 +134,9 @@
 			mysql_select_db(DB_NAME, $connection);
 			$r = mysql_query("SELECT slug FROM articles");
 			while($row = mysql_fetch_array($r)){
-				echo '"'.$row['slug'].'",';
+				if($row['slug'] != $article[0]['slug']){
+					echo '"'.$row['slug'].'",';
+				}
 			}
 			mysql_close($connection);
 		?>"");

@@ -30,7 +30,7 @@
 	<h3>Twitter</h3>
 </div>
 <blockquote>
-  <p><?php echo get_status('d13design'); ?></p>
+  <p><?php //echo get_status('d13design'); ?></p>
   <small>Follow <a href="http://twitter.com/d13design" title="Follow @d13design on Twitter">@d13design</a></small>
 </blockquote>
 
@@ -44,13 +44,13 @@
 <div class="page-header">
 	<h3>Dribbble</h3>
 </div>
-<?php $dribbble = new Dribbble();
+<?php /*$dribbble = new Dribbble();
 $my_shots = $dribbble->get_player_shots('d13design', 1, 1);
 foreach($my_shots->shots as $shot){
   echo '<a href="'.$shot->url.'" target="_blank">';
   echo '<img src="'.$shot->image_url.'" alt="'.$shot->title.'" style="max-width:300px;">';
   echo '</a>';
-}
+}*/
 ?>
 
 <div class="page-header">

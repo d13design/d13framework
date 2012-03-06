@@ -12,7 +12,7 @@
 </ul>
 
 <p style="text-align:right;">
-	<a href="<?php echo SITE_URL; ?>/admin/create-article" title="Create a new article" class="btn btn-primary"><i class="icon-asterisk icon-white"></i> Create a new article</a>
+	<a href="<?php echo SITE_URL; ?>/admin/create-article" title="Create a new article" class="btn btn-inverse"><i class="icon-asterisk icon-white"></i> Create a new article</a>
 </p>
 
 <table class="table table-striped table-bordered table-condensed">
@@ -40,12 +40,12 @@
 		mysql_close($connection);
 		while($row = mysql_fetch_array($result)){
 			echo '<tr><td>'.$row['id'].'</td><td><i class="icon-search"></i> ';
-			html_link(create_path($slugs[$row['section_id']],$row['slug']),$row['title']);
-     		echo '</td><td>'.trimmer($row['synopsis']).'</td>';
+			html_link(create_path($slugs[$row['section_id']],$row['slug']),urldecode($row['title']));
+     		echo '</td><td>'.trimmer(urldecode($row['synopsis'])).'</td>';
      		echo '<td>'.$sections[$row['section_id']].'</td>';
      		echo '<td><div class="btn-toolbar" style="margin:0px;"><div class="btn-group">';
-     		echo '<a class="btn btn-primary" href="'.SITE_URL.'/admin/edit-article/'.$row['id'].'" title="Edit '.$row['title'].'"><i class="icon-pencil icon-white"></i></a>';
-     		echo '<a class="btn btn-danger" href="'.SITE_URL.'/admin/delete-article/'.$row['id'].'" title="Delete '.$row['title'].'"><i class="icon-remove icon-white"></i></a>';
+     		echo '<a class="btn btn-primary" href="'.SITE_URL.'/admin/edit-article/'.$row['id'].'" title="Edit '.urldecode($row['title']).'"><i class="icon-pencil icon-white"></i></a>';
+     		echo '<a class="btn btn-danger" href="#" onclick="confirmer(\''.SITE_URL.'/admin-pages/delete.php?id='.$row['id'].'&type=article\',\''.urldecode($row['title']).'\'); return false;" title="Delete '.urldecode($row['title']).'"><i class="icon-remove icon-white"></i></a>';
      		echo '</div></div></td></tr>';
 		}
 		?>
@@ -53,6 +53,10 @@
 	</tbody>
 </table>
 
-<p style="text-align:right;">
-	<a href="<?php echo SITE_URL; ?>/admin/create-article" title="Create a new article" class="btn btn-primary"><i class="icon-asterisk icon-white"></i> Create a new article</a>
-</p>
+<script>
+function confirmer(url,title){
+	if(window.confirm('Are you sure you want to delete the article "'+title+'"')){
+		window.location = url;
+	}
+}
+</script>

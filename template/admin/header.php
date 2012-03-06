@@ -26,7 +26,14 @@
 
 		<?php html_js('jquery-1.6.2.min.js'); ?>
 		<?php html_js('prettify.js'); ?>
-		<?php html_js('bootstrap/bootstrap.js'); ?> 
+		<?php html_js('bootstrap/bootstrap.js'); ?>
+		
+		<?php html_js('nicEdit/nicEdit.js'); ?>
+		<script type="text/javascript">
+		bkLib.onDomLoaded(function() {
+			new nicEditor({maxHeight: 220, iconsPath: '<?php echo ASSETS_URL; ?>/js/nicEdit/nicEditorIcons.gif', buttonList : ['fontFormat','bold','italic','underline','strikeThrough','left','center','right','justify','ol','ul','hr','html','image','link','unlink']}).panelInstance('contents');
+		});
+		</script>
 		
 		<?php html_js('application.js'); ?>  
 		

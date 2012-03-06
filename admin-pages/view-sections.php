@@ -12,14 +12,15 @@
 </ul>
 
 <p style="text-align:right;">
-	<a href="<?php echo SITE_URL; ?>/admin/create-section" title="Create a new section" class="btn btn-primary"><i class="icon-asterisk icon-white"></i> Create a new section</a>
+	<a href="<?php echo SITE_URL; ?>/admin/create-section" title="Create a new section" class="btn btn-inverse"><i class="icon-asterisk icon-white"></i> Create a new section</a>
 </p>
 
 <table class="table table-striped table-bordered table-condensed">
 	<thead>
 		<tr>
 			<th width="5%">ID</th>
-			<th width="85%">Title</th>
+			<th width="50%">Title</th>
+			<th width="35%">Slug</th>
 			<th width="10%">Actions</th>
 		</tr>
 	</thead>
@@ -28,15 +29,16 @@
 		$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 		if (!$connection){ die('Could not connect: ' . mysql_error()); }
 		mysql_select_db(DB_NAME, $connection);
-		$result = mysql_query("SELECT * FROM sections ORDER BY id ASC");
+		$result = mysql_query("SELECT * FROM sections ORDER BY title ASC");
 		mysql_close($connection);
 		while($row = mysql_fetch_array($result)){
 			echo '<tr><td>'.$row['id'].'</td><td><i class="icon-search"></i> ';
-			html_link(create_path($row['slug']),$row['title']);
+			html_link(create_path($row['slug']),urldecode($row['title']));
+     		echo '</td><td>'.$row['slug'].'</td>';
      		echo '<td><div class="btn-toolbar" style="margin:0px;"><div class="btn-group">';
-     		echo '<a class="btn btn-primary" href="'.SITE_URL.'/admin/edit-section/'.$row['id'].'" title="Edit '.$row['title'].'"><i class="icon-pencil icon-white"></i></a>';
+     		echo '<a class="btn btn-primary" href="'.SITE_URL.'/admin/edit-section/'.$row['id'].'" title="Edit '.urldecode($row['title']).'"><i class="icon-pencil icon-white"></i></a>';
      		if($row['id']!=1){
-     			echo '<a class="btn btn-danger" href="'.SITE_URL.'/admin/delete-section/'.$row['id'].'" title="Delete '.$row['title'].'"><i class="icon-remove icon-white"></i></a>';
+     			echo '<a class="btn btn-danger" href="#" onclick="confirmer(\''.SITE_URL.'/admin-pages/delete.php?id='.$row['id'].'&type=section\',\''.urldecode($row['title']).'\'); return false;" title="Delete '.urldecode($row['title']).'"><i class="icon-remove icon-white"></i></a>';
      		}
      		echo '</div></div></td></tr>';
 		}
@@ -45,6 +47,10 @@
 	</tbody>
 </table>
 
-<p style="text-align:right;">
-	<a href="<?php echo SITE_URL; ?>/admin/create-section" title="Create a new section" class="btn btn-primary"><i class="icon-asterisk icon-white"></i> Create a new section</a>
-</p>
+<script>
+function confirmer(url,title){
+	if(window.confirm('Are you sure you want to delete the section "'+title+'"')){
+		window.location = url;
+	}
+}
+</script>

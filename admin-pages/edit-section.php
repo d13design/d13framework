@@ -1,22 +1,33 @@
-<?php if(isset($_POST['title']) && isset($_POST['slug']) && $_POST['title']!='' && $_POST['slug']!=''){
+<?php if(isset($_POST['id']) && isset($_POST['title']) && isset($_POST['slug']) && $_POST['title']!='' && $_POST['slug']!=''){
 
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("INSERT INTO sections (title,slug) VALUES ('".urlencode($_POST['title'])."','".$_POST['slug']."');");
+	$result = mysql_query("UPDATE sections SET title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
 	<div class="page-header" style="margin-top:50px;">
-		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Section created</h1>
+		<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Section updated</h1>
 	</div>
-	<p>Your section <strong><?php echo $_POST['title']; ?></strong> was successfully created.</p>
-	<p>
-	<?php html_link(create_path('admin','create-section'), 'Create another section', 'btn btn-primary'); ?>
-	<?php html_link(create_path('admin','view-sections'), 'View your sections', 'btn btn-primary'); ?>
-	</p>
-<?php }else{ ?>
+	<p>Your section <strong><?php echo $_POST['title']; ?></strong> was successfully updated.</p>
+	<p><?php html_link(create_path('admin','view-sections'), 'View your sections', 'btn btn-primary'); ?></p>
+<?php }else{ 
+	$section = array();
+	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
+	if (!$connection){ die('Could not connect: ' . mysql_error()); }
+	mysql_select_db(DB_NAME, $connection);
+	$result = mysql_query("SELECT * FROM sections WHERE id=".$a['items'][0]);
+	mysql_close($connection);
+	while($row = mysql_fetch_array($result)){
+        $section[] = array(
+        	'id'			=> $row['id'],
+        	'title'			=> urldecode($row['title']),
+        	'slug'			=> $row['slug']
+        );
+	}
+?>
 <div class="page-header" style="margin-top:50px;">
-	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Create a new section</h1>
+	<h1><?php html_link(create_path('admin'), 'Admin'); ?> &gt; Edit section</h1>
 </div>
 
 <ul class="nav nav-tabs">
@@ -30,25 +41,26 @@
 
 <form class="form-horizontal" action="" method="post" id="form">
 	<fieldset>
-		<legend>Your new section</legend>
+		<legend><?php echo $section[0]['title']?></legend>
 		<div class="control-group">
 			<label class="control-label" for="title">Title</label>
 			<div class="controls">
-				<input type="text" class="input-xlarge span6" id="title" name="title" onkeyup="updateSlug();">
+				<input type="hidden" id="id" name="id" value="<?php echo $section[0]['id'];?>">
+				<input type="text" class="input-xlarge span6" id="title" name="title" onkeyup="updateSlug();" value="<?php echo $section[0]['title'];?>">
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="slug">Slug</label>
 			<div class="controls">
 				<div class="input-append">
-					<input type="text" class="input-xlarge span5" id="slug" name="slug" onkeyup="checkSlug();">
+					<input type="text" class="input-xlarge span5" id="slug" name="slug" onkeyup="checkSlug();" value="<?php echo $section[0]['slug'];?>">
 					<span class="add-on" id="slug-check"><i class="icon-ban-circle"></i></span>
 				</div>
 				<p class="help-block">Don't use spaces or special characters - this slug is used to create your section URL</p>
 			</div>
 		</div>
 		<div class="form-actions">
-			<input type="button" class="btn btn-primary" value="Create section" onclick="validate();">
+			<input type="button" class="btn btn-primary" value="Update section" onclick="validate();">
 			<?php html_link(create_path('admin','view-sections'), 'Cancel', 'btn'); ?>
 		</div>
 	</fieldset>
@@ -81,7 +93,9 @@
 			mysql_select_db(DB_NAME, $connection);
 			$r = mysql_query("SELECT slug FROM sections");
 			while($row = mysql_fetch_array($r)){
-				echo '"'.$row['slug'].'",';
+				if($row['slug'] != $section[0]['slug']){
+					echo '"'.$row['slug'].'",';
+				}
 			}
 			mysql_close($connection);
 		?>"");
