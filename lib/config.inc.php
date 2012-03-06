@@ -25,7 +25,7 @@ define("DB_USER",'root');
 define("DB_PWRD",'root');
 
 define("SALT",'vXjaNwrIpwOuqMEq');
-define("ALLOW_REGISTER",true);
+define("ALLOW_REGISTER",false);
 
 define("TEMPLATE",'default');
 
