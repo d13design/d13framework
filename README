@@ -3,8 +3,8 @@
 /* Created by Dave Waller © d13design 2011                    */
 /**************************************************************/
 
-This is a really simple file based site framework written in PHP to support
-the build of a personal website.
+This is a really simple MySQL based site framework, with templates,
+written in PHP to support the build of a personal website.
 
 There's nothing too special about it, it just makes my life a little bit
 easier!
@@ -20,3 +20,4 @@ This framework uses a few libraries and resources created by others:
 3. Twitter Bootstrap - http://twitter.github.com/bootstrap/
 4. Prettify - http://code.google.com/p/google-code-prettify/
 5. Tipsy - http://plugins.jquery.com/project/tipsy
+6. Dribbble - martin@mcbwebdesign.co.uk
