@@ -29,7 +29,7 @@ if($a['section']==''){
 		}
 	}else if($a['section']=='pages' && $a['page']!=''){
 		// A page has been requested
-		$result = mysql_query("SELECT id FROM pages WHERE slug='".$a['page']."'");
+		$result = mysql_query("SELECT id FROM ".TBL_PRE."pages WHERE slug='".$a['page']."'");
 		$num_rows = mysql_num_rows($result);
 		if($num_rows==0){
 			// The page doesn't exist - serve a 404
@@ -40,7 +40,7 @@ if($a['section']==''){
 		}
 	}else if($a['section']!='' && $a['page']==''){
 		// A section is required but no page
-		$result = mysql_query("SELECT * FROM sections WHERE slug='".$a['section']."'");
+		$result = mysql_query("SELECT * FROM ".TBL_PRE."sections WHERE slug='".$a['section']."'");
 		$num_rows = mysql_num_rows($result);
 		if($num_rows==0){
 			// The section doesn't exist - serve a 404
@@ -51,9 +51,9 @@ if($a['section']==''){
 		}
 	}else if($a['section']!='' && $a['page']!=''){
 		// A section and a page are required
-		$result = mysql_query("SELECT id FROM sections WHERE slug='".$a['section']."'");
+		$result = mysql_query("SELECT id FROM ".TBL_PRE."sections WHERE slug='".$a['section']."'");
 		while($row = mysql_fetch_array($result)){ $section_id = $row['id']; }
-		$result2 = mysql_query("SELECT * FROM articles WHERE slug='".$a['page']."' AND section_id=".$section_id);
+		$result2 = mysql_query("SELECT * FROM ".TBL_PRE."articles WHERE slug='".$a['page']."' AND section_id=".$section_id);
 		$num_rows = mysql_num_rows($result2);
 		if($num_rows==0){
 			// The page doesn't exist - serve a 404

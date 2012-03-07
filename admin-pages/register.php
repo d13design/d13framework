@@ -13,7 +13,7 @@ if(!ALLOW_REGISTER){
 		$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 		if (!$connection){ die('Could not connect: ' . mysql_error()); }
 		mysql_select_db(DB_NAME, $connection);
-		$result = mysql_query("INSERT INTO users (username,password,email) VALUES ('".$_POST['username']."','".$password_c."','".$_POST['email']."');");
+		$result = mysql_query("INSERT INTO ".TBL_PRE."users (username,password,email) VALUES ('".$_POST['username']."','".$password_c."','".$_POST['email']."');");
 	}else{
 		//form
 		?>

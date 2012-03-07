@@ -42,6 +42,7 @@ define("DB_HOST",'127.0.0.1'); //Your database host
 define("DB_NAME",'d13design'); //The name of your database
 define("DB_USER",'root'); //Your database user name
 define("DB_PWRD",'root'); //Your database password
+define("TBL_PRE",''); //Your database table prefix for this site
 
 define("SALT",'vXjaNwrIpwOuqMEq'); //Your security salt - replace this with a 16 digit random alpha string
 define("ALLOW_REGISTER",true); //Can users register - leaving this set to true can be dangerous

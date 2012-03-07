@@ -23,6 +23,7 @@ define("DB_HOST",'127.0.0.1');
 define("DB_NAME",'d13design');
 define("DB_USER",'root');
 define("DB_PWRD",'root');
+define("TBL_PRE",'fw_');
 
 define("SALT",'vXjaNwrIpwOuqMEq');
 define("ALLOW_REGISTER",false);

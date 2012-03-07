@@ -61,7 +61,7 @@ function get_section($slug){
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$r = mysql_query("SELECT title FROM sections WHERE slug='".$slug."'");
+	$r = mysql_query("SELECT title FROM ".TBL_PRE."sections WHERE slug='".$slug."'");
 	$rw = mysql_fetch_row($r);
 	return(urldecode($rw[0]));
 }
@@ -71,7 +71,7 @@ function list_pages($a){
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("SELECT * FROM pages");
+	$result = mysql_query("SELECT * FROM ".TBL_PRE."pages");
 	mysql_close($connection);
 	while($row = mysql_fetch_array($result)){
 		if($a['section']=='pages' && $a['page']==$row['slug']){ $class="active"; }else{ $class=""; }
@@ -86,7 +86,7 @@ function list_sections($a){
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("SELECT * FROM sections");
+	$result = mysql_query("SELECT * FROM ".TBL_PRE."sections");
 	mysql_close($connection);
 	while($row = mysql_fetch_array($result)){
 		if($a['section']==$row['slug']){ $class="active"; }else{ $class=""; }
@@ -102,9 +102,9 @@ function get_articles($section_slug,$start=0,$total=1000000){
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$r = mysql_query("SELECT id FROM sections WHERE slug='".$section_slug."'");
+	$r = mysql_query("SELECT id FROM ".TBL_PRE."sections WHERE slug='".$section_slug."'");
 	$rw = mysql_fetch_row($r);
-	$result = mysql_query("SELECT * FROM articles WHERE section_id=".$rw[0]." ORDER BY created DESC LIMIT ".$start.", ".$total);
+	$result = mysql_query("SELECT * FROM ".TBL_PRE."articles WHERE section_id=".$rw[0]." ORDER BY created DESC LIMIT ".$start.", ".$total);
 	mysql_close($connection);
 	
 	while($row = mysql_fetch_array($result)){
@@ -128,9 +128,9 @@ function list_articles($section_slug='',$total=5,$icon='file'){
 	mysql_select_db(DB_NAME, $connection);
 	
 	if($section_slug != ''){
-		$r = mysql_query("SELECT id FROM sections WHERE slug='".$section_slug."'");
+		$r = mysql_query("SELECT id FROM ".TBL_PRE."sections WHERE slug='".$section_slug."'");
 		$rw = mysql_fetch_row($r);
-		$result = mysql_query("SELECT * FROM articles WHERE section_id=".$rw[0]." ORDER BY created DESC LIMIT 0, ".$total);
+		$result = mysql_query("SELECT * FROM ".TBL_PRE."articles WHERE section_id=".$rw[0]." ORDER BY created DESC LIMIT 0, ".$total);
 		mysql_close($connection);
 		while($row = mysql_fetch_array($result)){
 			echo '<li><i class="icon-'.$icon.'"></i>';
@@ -138,12 +138,12 @@ function list_articles($section_slug='',$total=5,$icon='file'){
      	   echo '</li>';
 		}
 	}else{
-		$r = mysql_query("SELECT * FROM sections");
+		$r = mysql_query("SELECT * FROM ".TBL_PRE."sections");
 		$slugs = array();
 		while($row = mysql_fetch_array($r)){
 			$slugs[$row['id']] = $row['slug'];
 		}
-		$result = mysql_query("SELECT * FROM articles ORDER BY created DESC LIMIT 0, ".$total);
+		$result = mysql_query("SELECT * FROM ".TBL_PRE."articles ORDER BY created DESC LIMIT 0, ".$total);
 		mysql_close($connection);
 		while($row = mysql_fetch_array($result)){
 			echo '<li><i class="icon-'.$icon.'"></i>';
@@ -158,7 +158,7 @@ function get_page($page_slug){
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("SELECT * FROM pages WHERE slug='".$page_slug."'");
+	$result = mysql_query("SELECT * FROM ".TBL_PRE."pages WHERE slug='".$page_slug."'");
 	mysql_close($connection);
 	$page_data = array();
 	$row = mysql_fetch_row($result);
@@ -173,12 +173,12 @@ function get_article($slug){
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("SELECT * FROM articles WHERE slug='".$slug."'");
+	$result = mysql_query("SELECT * FROM ".TBL_PRE."articles WHERE slug='".$slug."'");
 	$article = array();
 	$row = mysql_fetch_row($result);
 	$article['id'] = $row[0];
 	$article['section_id'] = $row[1];
-	$result2 = mysql_query("SELECT * FROM sections WHERE id=".$row[1]);
+	$result2 = mysql_query("SELECT * FROM ".TBL_PRE."sections WHERE id=".$row[1]);
 	$row2 = mysql_fetch_row($result2);
 	$article['section_title'] = urldecode($row2[1]);
 	$article['section_slug'] = $row2[2];
@@ -281,7 +281,7 @@ function authenticated(){
 		$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 		if (!$connection){ die('Could not connect: ' . mysql_error()); }
 		mysql_select_db(DB_NAME, $connection);
-		$result = mysql_query("SELECT id FROM users WHERE username='".$_SESSION['username']."'");
+		$result = mysql_query("SELECT id FROM ".TBL_PRE."users WHERE username='".$_SESSION['username']."'");
 		$row = mysql_fetch_row($result);
 		if($row[0]){
 			return true;

@@ -29,7 +29,7 @@
 		$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 		if (!$connection){ die('Could not connect: ' . mysql_error()); }
 		mysql_select_db(DB_NAME, $connection);
-		$result = mysql_query("SELECT * FROM pages ORDER BY id DESC");
+		$result = mysql_query("SELECT * FROM ".TBL_PRE."pages ORDER BY id DESC");
 		mysql_close($connection);
 		while($row = mysql_fetch_array($result)){
 			echo '<tr><td>'.$row['id'].'</td><td><i class="icon-search"></i> ';

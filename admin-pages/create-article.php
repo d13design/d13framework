@@ -6,7 +6,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("INSERT INTO articles (section_id,title,slug,synopsis,contents) VALUES (".urlencode($_POST['section']).",'".urlencode($_POST['title'])."','".$_POST['slug']."','".urlencode($_POST['synopsis'])."','".urlencode($string)."');");
+	$result = mysql_query("INSERT INTO ".TBL_PRE."articles (section_id,title,slug,synopsis,contents) VALUES (".urlencode($_POST['section']).",'".urlencode($_POST['title'])."','".$_POST['slug']."','".urlencode($_POST['synopsis'])."','".urlencode($string)."');");
 	mysql_close($connection);
 	?>
 	<div class="page-header">
@@ -58,7 +58,7 @@
 					$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 					if (!$connection){ die('Could not connect: ' . mysql_error()); }
 					mysql_select_db(DB_NAME, $connection);
-					$r = mysql_query("SELECT * FROM sections");
+					$r = mysql_query("SELECT * FROM ".TBL_PRE."sections");
 					while($row = mysql_fetch_array($r)){
 						echo '<option value="'.$row['id'].'">'.urldecode($row['title']).'</option>';
 					}
@@ -115,7 +115,7 @@
 			$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 			if (!$connection){ die('Could not connect: ' . mysql_error()); }
 			mysql_select_db(DB_NAME, $connection);
-			$r = mysql_query("SELECT slug FROM articles");
+			$r = mysql_query("SELECT slug FROM ".TBL_PRE."articles");
 			while($row = mysql_fetch_array($r)){
 				echo '"'.$row['slug'].'",';
 			}

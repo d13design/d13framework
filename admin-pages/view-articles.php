@@ -30,13 +30,13 @@
 		$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 		if (!$connection){ die('Could not connect: ' . mysql_error()); }
 		mysql_select_db(DB_NAME, $connection);
-		$r = mysql_query("SELECT * FROM sections");
+		$r = mysql_query("SELECT * FROM ".TBL_PRE."sections");
 		$slugs = array(); $sections = array();
 		while($row = mysql_fetch_array($r)){
 			$slugs[$row['id']] = $row['slug'];
 			$sections[$row['id']] = $row['title'];
 		}
-		$result = mysql_query("SELECT * FROM articles ORDER BY created DESC");
+		$result = mysql_query("SELECT * FROM ".TBL_PRE."articles ORDER BY created DESC");
 		mysql_close($connection);
 		while($row = mysql_fetch_array($result)){
 			echo '<tr><td>'.$row['id'].'</td><td><i class="icon-search"></i> ';

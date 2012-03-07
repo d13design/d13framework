@@ -6,7 +6,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("UPDATE articles SET section_id=".$_POST['section'].", title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', synopsis='".urlencode($_POST['synopsis'])."', contents='".urlencode($string)."' WHERE id=".$_POST['id']."");
+	$result = mysql_query("UPDATE ".TBL_PRE."articles SET section_id=".$_POST['section'].", title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', synopsis='".urlencode($_POST['synopsis'])."', contents='".urlencode($string)."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
 	<div class="page-header">
@@ -19,7 +19,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("SELECT * FROM articles WHERE id=".$a['items'][0]);
+	$result = mysql_query("SELECT * FROM ".TBL_PRE."articles WHERE id=".$a['items'][0]);
 	mysql_close($connection);
 	while($row = mysql_fetch_array($result)){
         $article[] = array(
@@ -74,7 +74,7 @@
 					$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 					if (!$connection){ die('Could not connect: ' . mysql_error()); }
 					mysql_select_db(DB_NAME, $connection);
-					$r = mysql_query("SELECT * FROM sections");
+					$r = mysql_query("SELECT * FROM ".TBL_PRE."sections");
 					while($row = mysql_fetch_array($r)){
 						if($article[0]['section_id']==$row['id']){ $sel = ' selected'; }else{ $sel = ''; }
 						echo '<option value="'.$row['id'].'" '.$sel.'>'.urldecode($row['title']).'</option>';
@@ -132,7 +132,7 @@
 			$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 			if (!$connection){ die('Could not connect: ' . mysql_error()); }
 			mysql_select_db(DB_NAME, $connection);
-			$r = mysql_query("SELECT slug FROM articles");
+			$r = mysql_query("SELECT slug FROM ".TBL_PRE."articles");
 			while($row = mysql_fetch_array($r)){
 				if($row['slug'] != $article[0]['slug']){
 					echo '"'.$row['slug'].'",';

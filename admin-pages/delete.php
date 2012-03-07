@@ -8,22 +8,22 @@ if(authenticated){
 		$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 		if (!$connection){ die('Could not connect: ' . mysql_error()); }
 		mysql_select_db(DB_NAME, $connection);
-		$result = mysql_query("DELETE FROM articles WHERE id=".$_GET['id']);
+		$result = mysql_query("DELETE FROM ".TBL_PRE."articles WHERE id=".$_GET['id']);
 		header('Location: '.SITE_URL.'/admin/view-articles');
 	}
 	if($_GET['type']=='page'){
 		$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 		if (!$connection){ die('Could not connect: ' . mysql_error()); }
 		mysql_select_db(DB_NAME, $connection);
-		$result = mysql_query("DELETE FROM pages WHERE id=".$_GET['id']);
+		$result = mysql_query("DELETE FROM ".TBL_PRE."pages WHERE id=".$_GET['id']);
 		header('Location: '.SITE_URL.'/admin/view-pages');
 	}
 	if($_GET['type']=='section' && $_GET['id']!=1){
 		$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 		if (!$connection){ die('Could not connect: ' . mysql_error()); }
 		mysql_select_db(DB_NAME, $connection);
-		$result = mysql_query("DELETE FROM sections WHERE id=".$_GET['id']);
-		$result2 = mysql_query("UPDATE articles SET section_id='1' WHERE section_id=".$_GET['id']);
+		$result = mysql_query("DELETE FROM ".TBL_PRE."sections WHERE id=".$_GET['id']);
+		$result2 = mysql_query("UPDATE ".TBL_PRE."articles SET section_id='1' WHERE section_id=".$_GET['id']);
 		header('Location: '.SITE_URL.'/admin/view-sections');
 	}
 }else{

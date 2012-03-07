@@ -6,7 +6,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("UPDATE pages SET title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', contents='".urlencode($string)."' WHERE id=".$_POST['id']."");
+	$result = mysql_query("UPDATE ".TBL_PRE."pages SET title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', contents='".urlencode($string)."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
 	<div class="page-header">
@@ -19,7 +19,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("SELECT * FROM pages WHERE id=".$a['items'][0]);
+	$result = mysql_query("SELECT * FROM ".TBL_PRE."pages WHERE id=".$a['items'][0]);
 	mysql_close($connection);
 	while($row = mysql_fetch_array($result)){
         $page[] = array(
@@ -103,7 +103,7 @@
 			$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 			if (!$connection){ die('Could not connect: ' . mysql_error()); }
 			mysql_select_db(DB_NAME, $connection);
-			$r = mysql_query("SELECT slug FROM pages");
+			$r = mysql_query("SELECT slug FROM ".TBL_PRE."pages");
 			while($row = mysql_fetch_array($r)){
 				if($row['slug'] != $page[0]['slug']){
 					echo '"'.$row['slug'].'",';
