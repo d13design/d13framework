@@ -13,10 +13,12 @@
 
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/prettify.css">
+		<link rel="stylesheet" href="css/styles.css">
 
-		<script src="js/jquery-1.6.2.min.js"></script>
+		<script src="js/jquery-1.7.1.min.js"></script>
 		<script src="js/prettify.js"></script>
-		<script src="js/bootstrap/bootstrap.js"></script>
+		<script src="js/bootstrap/bootstrap-dropdown.js"></script>
+		<script src="js/bootstrap/bootstrap-carousel.js"></script>
 		
 		<link href="css/images/ico/favicon.ico" rel="shortcut icon">
 		<link href="css/images/ico/apple-touch-icon.png" rel="apple-touch-icon">
@@ -26,61 +28,129 @@
 	</head>
 
 	<body onload="prettyPrint();">
+	
+		<div class="container" style="margin-top:15px;">
+		
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container">
+						<a href="https://github.com/d13design/d13framework" class="brand">d13framework</a>
+						<ul class="nav">
+							<li class="divider-vertical"></li>
+							<li><a href="#features">Features</a></li>
+							<li class="divider-vertical"></li>
+							<li><a href="https://github.com/d13design/d13framework/zipball/master">Download as ZIP</a></li>
+							<li class="divider-vertical"></li>
+							<li><a href="https://github.com/d13design/d13framework/tarball/master">Download as TAR</a></li>
+							<li class="divider-vertical"></li>
+							<li><a href="https://github.com/d13design/d13framework">Source code</a></li>
+							<li class="divider-vertical"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 
-  <a href="https://github.com/d13design/d13framework"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+		</div>
 
-  <div id="container">
-
-    <div class="download">
-      <a href="https://github.com/d13design/d13framework/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/d13design/d13framework/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="https://github.com/d13design/d13framework">d13framework</a>
-      <span class="small">by <a href="https://github.com/d13design">d13design</a></span></h1>
-
-    <div class="description">
-      A simple, file-based PHP site framework
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-      <h2>Authors</h2>
-      <p>Dave Waller (davewallr@gmail.com)
-<br/>      </p>
-    
-
-    
-      <h2>Contact</h2>
-      <p>Dave Waller (dave.Waller@myknowledgemap.com)
-<br/>      </p>
-    
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/d13design/d13framework/zipball/master">zip</a> or
-      <a href="https://github.com/d13design/d13framework/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/d13design/d13framework</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/d13design/d13framework">d13design/d13framework</a>
-    </div>
-
-  </div>
+		<div class="container" id="screenshots">
+			<img src="img/screenshot2.png">			
+		</div>
+		
+		<div id="details" style="margin-top:0px;">
+		
+			<div class="container">
+		
+				<div class="row">
+					<div class="span8 offset2" style="text-align:center;">
+						<h1>d13framework</h1>
+						<h2>No Bells, No Whistles &mdash; Just Simplicity</h2>
+						<p>A verrrrry simple PHP and MySQL content management system with just enough functionality to run a personal website, all powered by the incredible <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
+					</div>
+				</div>
+			
+				<div class="row">
+					<div class="span12">
+						<p style="text-align:center;">
+							<a href="https://github.com/d13design/d13framework/zipball/master" class="btn btn-primary btn-large"><i class="icon-download icon-white"></i>&nbsp;&nbsp;Download now!</a>
+							<a href="https://github.com/d13design/d13framework" class="btn btn-large"><i class="icon-list alt"></i>&nbsp;&nbsp;View on GitHub</a>
+						</p>
+						<p style="text-align:center;">
+							...or <a href="https://github.com/d13design/d13framework/tarball/master">clone</a> on GitHub : <code>$ git clone git://github.com/d13design/d13framework</code>
+						</p>
+					</div>
+				</div>
+				
+				<div class="row" id="features">
+					<div class="span12">
+						<hr>
+						<h2 style="text-align:center;">Features? Not many, but we've got a few...</h2>
+						<hr>
+					</div>
+				</div>
+				
+				<div class="row" style="text-align:center;">
+					<div class="span3">
+						<h4>Pretty URLs</h4>
+						<p>Create search engine friendly URLs out of the box with tailorable post 'slugs' and quick validation on new articles and pages.</p>
+					</div>
+					
+					<div class="span3">
+						<h4>Web-based admin</h4>
+						<p>Simple online admin area for content management of pages, articles and sections.
+					</div>
+					
+					<div class="span3">
+						<h4>Simple structure</h4>
+						<p>Nothing over the top just a simple page / article / section structure to give you some flexibility.</p>
+					</div>
+					
+					<div class="span3">
+						<h4>Multiple templates</h4>
+						<p>Support for multiple layout templates with a cracking default theme built on the Twitter Bootstrap framework.</p>
+					</div>
+				</div>
+				
+				<div class="row" style="text-align:center;">
+					<hr>
+					<div class="span3">
+						<h4>Template helpers</h4>
+						<p>Tons of pre-built helpers to call from directly within your own templates - anything you can see in the default theme you can create with helpers!</p>
+					</div>
+					
+					<div class="span3">
+						<h4>Template help</h4>
+						<p>The admin pages are full of template help information - all the helpers and code snippets you'll need are listed here.</p>
+					</div>
+					
+					<div class="span3">
+						<h4>Multi-site support</h4>
+						<p>The simple TBL_PRE config option lets you run multiple sites from the same, shared database - great!</p>
+					</div>
+					
+					<div class="span3">
+						<h4>Custom properties</h4>
+						<p>Tag articles with a string of custom data that you can then read and interpret in your templates using PHP. Nothing fancy, just something simple.</p>
+					</div>
+				</div>
+				
+				<div class="row">
+					<hr>
+					<p>Built as a personal project to help kickstart website projects, this framework is offered with no warranty what-so-ever.<br>
+					Do with it as you wish, just bear in mind that it isn't intended to be all powerful and it certainly isn't professionally coded.<br>
+					There's tons of stuff bundled in there, including the <a href="http://twitter.github.com/bootstrap/">Twiiter Bootstrap</a>, and full credits are available in the readme file.</p>
+					<p>If you find it useful or have any questions, find me on <a href="http://www.d13design.co.uk">d13design.co.uk</a> or on Twitter <a href="http://twitter.com/d13design">@d13design</a>.</p>
+				</div>
+		
+			</div>
+		
+		</div>
+  
+	<a href="https://github.com/d13design/d13framework"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+	
+	<script>
+		$(document).ready(function() {
+		});
+	</script>
 
 </body>
 </html>
