@@ -6,7 +6,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("INSERT INTO ".TBL_PRE."articles (section_id,title,slug,synopsis,contents) VALUES (".urlencode($_POST['section']).",'".urlencode($_POST['title'])."','".$_POST['slug']."','".urlencode($_POST['synopsis'])."','".urlencode($string)."');");
+	$result = mysql_query("INSERT INTO ".TBL_PRE."articles (section_id,title,slug,synopsis,contents,custom_data) VALUES (".urlencode($_POST['section']).",'".urlencode($_POST['title'])."','".$_POST['slug']."','".urlencode($_POST['synopsis'])."','".urlencode($string)."','".urlencode($_POST['custom_data'])."');");
 	mysql_close($connection);
 	?>
 	<div class="page-header">
@@ -78,6 +78,13 @@
 			<label class="control-label" for="contents">Contents</label>
 			<div class="controls">
 				<textarea id="contents" name="contents" class="input-xlarge span6" rows="8"><div>Add your article contents here</div></textarea>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="synopsis">Custom data</label>
+			<div class="controls">
+				<textarea id="custom_data" name="custom_data" class="input-xlarge span6"></textarea>
+				<p class="help-block">Any additional data to store alongside your article - you can process this data in your template</p>
 			</div>
 		</div>
 		<div class="form-actions">

@@ -28,6 +28,8 @@
 		
 		<?php echo $article['contents']; ?>
 		
+		<p>Custom data: <strong><?php echo $article['custom_data']; ?></strong></p>
+		
 	</div>
 	<div class="span4">
 		<?php require_once('template/'.TEMPLATE.'/sidebar.php'); ?>

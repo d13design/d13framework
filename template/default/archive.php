@@ -28,6 +28,7 @@
 			foreach($pagelist as $article){ ?>
 				<?php /* if($a['section']=='chosen-slug'){ // Use this if you want to implement conditional templates based on section */ ?>
 					<h3><?php html_link(create_path($a['section'],$article['slug']), $article['title']); ?></h3>
+					<p>Custom data: <?php echo $article['custom_data']; ?></p>
 					<p><?php echo trimmer($article['synopsis']); ?> <?php html_link(create_path($a['section'],$article['slug']), 'Read more &rarr;'); ?></p>
 				<?php /* } // End conditional template */ ?>
 			<?php }

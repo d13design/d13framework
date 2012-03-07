@@ -115,6 +115,8 @@ function get_articles($section_slug,$start=0,$total=1000000){
         	'title'			=> urldecode($row['title']),
         	'slug'			=> $row['slug'],
         	'synopsis'		=> urldecode($row['synopsis']),
+        	'contents'		=> urldecode($row['contents']),
+        	'custom_data'	=> urldecode($row['custom_data']),
         	'created'		=> $row['created'],
         );
 	}
@@ -186,7 +188,8 @@ function get_article($slug){
 	$article['slug'] = $row[3];
 	$article['synopsis'] = urldecode($row[4]);
 	$article['contents'] = urldecode($row[5]);
-	$article['created'] = strtotime($row[6]);
+	$article['custom_data'] = urldecode($row[6]);
+	$article['created'] = strtotime($row[7]);
 	mysql_close($connection);
 	return($article);
 }

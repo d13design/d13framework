@@ -6,7 +6,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("UPDATE ".TBL_PRE."articles SET section_id=".$_POST['section'].", title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', synopsis='".urlencode($_POST['synopsis'])."', contents='".urlencode($string)."' WHERE id=".$_POST['id']."");
+	$result = mysql_query("UPDATE ".TBL_PRE."articles SET section_id=".$_POST['section'].", title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', synopsis='".urlencode($_POST['synopsis'])."', contents='".urlencode($string)."', custom_data='".urlencode($_POST['custom_data'])."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
 	<div class="page-header">
@@ -29,6 +29,7 @@
         	'slug'			=> $row['slug'],
         	'synopsis'		=> urldecode($row['synopsis']),
         	'contents'		=> urldecode($row['contents']),
+        	'custom_data'	=> urldecode($row['custom_data']),
         	'created'		=> $row['created'],
         );
 	}
@@ -95,6 +96,13 @@
 			<label class="control-label" for="contents">Contents</label>
 			<div class="controls">
 				<textarea id="contents" name="contents" class="input-xlarge span6" rows="8"><?php echo $article[0]['contents']; ?></textarea>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="synopsis">Custom data</label>
+			<div class="controls">
+				<textarea id="custom_data" name="custom_data" class="input-xlarge span6"><?php echo $article[0]['custom_data']; ?></textarea>
+				<p class="help-block">Any additional data to store alongside your article - you can process this data in your template</p>
 			</div>
 		</div>
 		<div class="form-actions">
