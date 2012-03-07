@@ -9,7 +9,7 @@
 ?>
 
 			<footer class="footer">
-				<p>All content is &copy; <?php echo SITE_NAME; ?> -- <?php html_link('mailto:'.SITE_EMAIL, SITE_AUTHOR); ?> -- Page load in <?php echo $totaltime; ?> seconds</p>
+				<p>All content is &copy; <?php echo SITE_NAME; ?> -- <?php html_link('mailto:'.SITE_EMAIL, SITE_AUTHOR); ?> -- Page load in <?php echo $totaltime; ?> seconds -- Framework version v<?php echo VNUM; ?></p>
 			</footer>
 		</div>
 	</body>

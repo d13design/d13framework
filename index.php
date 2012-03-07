@@ -10,6 +10,8 @@
 
 session_start();
 
+define("VNUM",'0.1');
+
 $time=explode(' ',microtime());$time=$time[1]+$time[0];$begintime=$time;
 
 require_once 'lib/config.inc.php';

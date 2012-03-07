@@ -11,7 +11,7 @@
 	<li><?php html_link(create_path('admin','template-help'), '<i class="icon-info-sign"></i> Template help'); ?></li>
 </ul>
 
-<p>Welcome back <strong><?php echo $_SESSION['username']; ?></strong>.</p>
+<p>Welcome back <strong><?php echo $_SESSION['username']; ?></strong>, you are running framework version v<?php echo VNUM; ?></p>
 
 <div class="page-header">
 	<h3>Creating a new template</h3>
