@@ -62,3 +62,9 @@
 		</div>
 
 		<div class="container" style="margin-top:50px;">
+		
+		<?php if(ALLOW_REGISTER){ ?>
+		<div class="alert alert-block">
+			<strong>BEWARE: </strong>Your registration is still open - the d13framework offers NO security in its registration process, make sure you disable it in your config file.
+		</div>
+		<?php } ?>
