@@ -271,6 +271,30 @@ $article_data = array(
   'created' => '4523846452',
 );</pre>
 
+<h2 id="customdata">Working with custom data</h2>
+<p>Using custom data field is a great way to tag more properties against your articles. You can define whatever you want in this space and then use it in your templates. The <span class="label">parse_properties</span> helper is an easy way to turn your custom data into a useful array.</p>
+<p>The helper works on a principle of key-value pairs, for instance <code>thumb=images/thumbnail.jpg|externalLink=http://google.com</code> could be set as the custom data for an article. Passing this into the helper would pass back an array:</p>
+<pre class="prettyprint linenums">
+&lt;?php $custom_props = parse_properties($article['custom_data']); ?&gt;
+</pre>
+<pre class="prettyprint linenums">
+$custom_props = array(
+  'thumb' => 'images/thumbnail.jpg',
+  'externalLink' => 'http://google.com'
+);</pre>
+<p>You can override the separators used to parse properties by adding an additional 2 parameters, these default to <code>|</code> as the property separator and <code>=</code> as the key-value separator.</p>
+<pre class="prettyprint linenums">
+&lt;?php $article['custom_data'] = 'thumb#images/thumbnail.jpg~externalLink#http://google.com'; ?&gt;
+</pre>
+<pre class="prettyprint linenums">
+&lt;?php $custom_props = parse_properties($article['custom_data'],'~','#'); ?&gt;
+</pre>
+<pre class="prettyprint linenums">
+$custom_props = array(
+  'thumb' => 'images/thumbnail.jpg',
+  'externalLink' => 'http://google.com'
+);</pre>
+
 <div class="page-header" style="margin-top:70px;">
 	<h1>Other plugins and helpers</h1>
 </div>
@@ -334,6 +358,7 @@ foreach($my_shots->shots as $shot){
 					<li><a href="#recent-articles">Recent articles list</a></li>
 					<li><a href="#page">Displaying a page</a></li>
 					<li><a href="#article">Displaying an article</a></li>
+					<li><a href="#customdata">Working with custom data</a></li>
 				</ul>
 			</li>
 			<li><strong>Other plugins &amp; helpers &rarr;</strong>

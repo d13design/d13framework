@@ -251,6 +251,17 @@ function pagination($pagelist,$section,$qs,$first="&larr;",$prev="&lt;",$next="&
 	}
 }
 
+/* Helper to decode custom article properties based on two different separators */
+function parse_properties($customProps,$pairSep="|",$keyValSep="="){
+	$returnArray = array();
+	$custom_data = explode($pairSep,$customProps);
+	foreach($custom_data as $data_pair){
+		$pair = explode($keyValSep,$data_pair);
+		$returnArray[$pair[0]] = $pair[1];
+	}
+	return($returnArray);
+}
+
 /* Helper to get the latest tweet from a provided Twitter username */
 function get_status($twitter_id, $hyperlinks = true) {
     $c = curl_init();
