@@ -60,6 +60,7 @@ define("PAGE_COUNT", 3); //The number of items to show per page when using pagin
 <p>You can add images to your codse using the simple <span class="label">html_img</span> helper:</p>
 <pre class="prettyprint linenums">
 &lt;?php html_img('filename', 'imageClass', 'altTag', 'linkURL', 'linkClass', 'title', 'target'); ?&gt;</pre>
+<p>This assumes that images are stored in your assets folder, as defined by your <span class="label">ASSETS_URL</span> config setting.</p>
 
 <h2 id="links">Adding links</h2>
 <p>You can add links to your code using the simple <span class="label">html_link</span> helper:</p>
@@ -108,6 +109,8 @@ returns 'The quick brown fox jumped over the lazy &#133;'</pre>
 <pre class="prettyprint linenums">
 &lt;link rel="stylesheet" type="text/css" href="http://127.0.0.1/d13design/assets/css/styles.css" /&gt;
 &lt;script type="text/javascript" src="http://127.0.0.1/d13design/assets/js/jquery.js"&gt;&lt;/script&gt;</pre>
+<p>This assumes that javascripts are stored in a <span class="label">js</span> folder in your assets folder, as defined by your <span class="label">ASSETS_URL</span> config setting.</p>
+<p>This assumes that CSS is stored in a <span class="label">css</span> folder in your template.</p>
 
 <h2 id="code">Code listings</h2>
 <p>You can use the included prettify library to handle code listings:</p>
