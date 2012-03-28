@@ -33,12 +33,12 @@
 		mysql_close($connection);
 		while($row = mysql_fetch_array($result)){
 			echo '<tr><td>'.$row['id'].'</td><td><i class="icon-search"></i> ';
-			html_link(create_path($row['slug']),urldecode($row['title']));
+			html_link(create_path($row['slug']),rawurldecode($row['title']));
      		echo '</td><td>'.$row['slug'].'</td>';
      		echo '<td><div class="btn-toolbar" style="margin:0px;"><div class="btn-group">';
-     		echo '<a class="btn btn-primary" href="'.SITE_URL.'/admin/edit-section/'.$row['id'].'" title="Edit '.urldecode($row['title']).'"><i class="icon-pencil icon-white"></i></a>';
+     		echo '<a class="btn btn-primary" href="'.SITE_URL.'/admin/edit-section/'.$row['id'].'" title="Edit '.rawurldecode($row['title']).'"><i class="icon-pencil icon-white"></i></a>';
      		if($row['id']!=1){
-     			echo '<a class="btn btn-danger" href="#" onclick="confirmer(\''.SITE_URL.'/admin-pages/delete.php?id='.$row['id'].'&type=section\',\''.urldecode($row['title']).'\'); return false;" title="Delete '.urldecode($row['title']).'"><i class="icon-trash icon-white"></i></a>';
+     			echo '<a class="btn btn-danger" href="#" onclick="confirmer(\''.SITE_URL.'/admin-pages/delete.php?id='.$row['id'].'&type=section\',\''.rawurldecode($row['title']).'\'); return false;" title="Delete '.rawurldecode($row['title']).'"><i class="icon-trash icon-white"></i></a>';
      		}else{
      			echo '<span class="btn"><i class="icon-trash icon-white"></i></span>';
      		}

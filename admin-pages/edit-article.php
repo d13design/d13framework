@@ -6,7 +6,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("UPDATE ".TBL_PRE."articles SET section_id=".$_POST['section'].", title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."', synopsis='".urlencode($_POST['synopsis'])."', contents='".urlencode($string)."', custom_data='".urlencode($_POST['custom_data'])."' WHERE id=".$_POST['id']."");
+	$result = mysql_query("UPDATE ".TBL_PRE."articles SET section_id=".$_POST['section'].", title='".rawurlencode($_POST['title'])."', slug='".$_POST['slug']."', synopsis='".rawurlencode($_POST['synopsis'])."', contents='".rawurlencode($string)."', custom_data='".rawurlencode($_POST['custom_data'])."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
 	<div class="page-header">
@@ -25,11 +25,11 @@
         $article[] = array(
         	'id'			=> $row['id'],
         	'section_id'	=> $row['section_id'],
-        	'title'			=> urldecode($row['title']),
+        	'title'			=> rawurldecode($row['title']),
         	'slug'			=> $row['slug'],
-        	'synopsis'		=> urldecode($row['synopsis']),
-        	'contents'		=> urldecode($row['contents']),
-        	'custom_data'	=> urldecode($row['custom_data']),
+        	'synopsis'		=> rawurldecode($row['synopsis']),
+        	'contents'		=> rawurldecode($row['contents']),
+        	'custom_data'	=> rawurldecode($row['custom_data']),
         	'created'		=> $row['created'],
         );
 	}
@@ -78,7 +78,7 @@
 					$r = mysql_query("SELECT * FROM ".TBL_PRE."sections");
 					while($row = mysql_fetch_array($r)){
 						if($article[0]['section_id']==$row['id']){ $sel = ' selected'; }else{ $sel = ''; }
-						echo '<option value="'.$row['id'].'" '.$sel.'>'.urldecode($row['title']).'</option>';
+						echo '<option value="'.$row['id'].'" '.$sel.'>'.rawurldecode($row['title']).'</option>';
 					}
 					mysql_close($connection);
 					?>

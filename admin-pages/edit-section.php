@@ -3,7 +3,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("UPDATE ".TBL_PRE."sections SET title='".urlencode($_POST['title'])."', slug='".$_POST['slug']."' WHERE id=".$_POST['id']."");
+	$result = mysql_query("UPDATE ".TBL_PRE."sections SET title='".rawurlencode($_POST['title'])."', slug='".$_POST['slug']."' WHERE id=".$_POST['id']."");
 	mysql_close($connection);
 	?>
 	<div class="page-header">
@@ -21,7 +21,7 @@
 	while($row = mysql_fetch_array($result)){
         $section[] = array(
         	'id'			=> $row['id'],
-        	'title'			=> urldecode($row['title']),
+        	'title'			=> rawurldecode($row['title']),
         	'slug'			=> $row['slug']
         );
 	}

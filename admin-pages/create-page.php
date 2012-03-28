@@ -6,7 +6,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("INSERT INTO ".TBL_PRE."pages (title,slug,contents) VALUES ('".urlencode($_POST['title'])."','".$_POST['slug']."','".urlencode($string)."');");
+	$result = mysql_query("INSERT INTO ".TBL_PRE."pages (title,slug,contents) VALUES ('".rawurlencode($_POST['title'])."','".$_POST['slug']."','".rawurlencode($string)."');");
 	mysql_close($connection);
 	?>
 	<div class="page-header">

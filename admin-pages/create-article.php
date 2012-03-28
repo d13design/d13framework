@@ -6,7 +6,7 @@
 	$connection = mysql_connect(DB_HOST,DB_USER,DB_PWRD);
 	if (!$connection){ die('Could not connect: ' . mysql_error()); }
 	mysql_select_db(DB_NAME, $connection);
-	$result = mysql_query("INSERT INTO ".TBL_PRE."articles (section_id,title,slug,synopsis,contents,custom_data) VALUES (".urlencode($_POST['section']).",'".urlencode($_POST['title'])."','".$_POST['slug']."','".urlencode($_POST['synopsis'])."','".urlencode($string)."','".urlencode($_POST['custom_data'])."');");
+	$result = mysql_query("INSERT INTO ".TBL_PRE."articles (section_id,title,slug,synopsis,contents,custom_data) VALUES (".rawurlencode($_POST['section']).",'".rawurlencode($_POST['title'])."','".$_POST['slug']."','".rawurlencode($_POST['synopsis'])."','".rawurlencode($string)."','".rawurlencode($_POST['custom_data'])."');");
 	mysql_close($connection);
 	?>
 	<div class="page-header">
@@ -60,7 +60,7 @@
 					mysql_select_db(DB_NAME, $connection);
 					$r = mysql_query("SELECT * FROM ".TBL_PRE."sections");
 					while($row = mysql_fetch_array($r)){
-						echo '<option value="'.$row['id'].'">'.urldecode($row['title']).'</option>';
+						echo '<option value="'.$row['id'].'">'.rawurldecode($row['title']).'</option>';
 					}
 					mysql_close($connection);
 					?>

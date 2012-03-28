@@ -63,7 +63,7 @@ function get_section($slug){
 	mysql_select_db(DB_NAME, $connection);
 	$r = mysql_query("SELECT title FROM ".TBL_PRE."sections WHERE slug='".$slug."'");
 	$rw = mysql_fetch_row($r);
-	return(urldecode($rw[0]));
+	return(rawurldecode($rw[0]));
 }
 
 /* Helper to list pages */
@@ -76,7 +76,7 @@ function list_pages($a){
 	while($row = mysql_fetch_array($result)){
 		if($a['section']=='pages' && $a['page']==$row['slug']){ $class="active"; }else{ $class=""; }
         echo '<li class="'.$class.'">';
-		html_link(create_path('pages',$row['slug']),urldecode($row['title']));
+		html_link(create_path('pages',$row['slug']),rawurldecode($row['title']));
 		echo '</li>';
 	}
 }
@@ -91,7 +91,7 @@ function list_sections($a){
 	while($row = mysql_fetch_array($result)){
 		if($a['section']==$row['slug']){ $class="active"; }else{ $class=""; }
         echo '<li class="'.$class.'">';
-		html_link(create_path($row['slug']),urldecode($row['title']));
+		html_link(create_path($row['slug']),rawurldecode($row['title']));
 		echo '</li>';
 	}
 }
@@ -112,11 +112,11 @@ function get_articles($section_slug,$start=0,$total=1000000){
         	'id'			=> $row['id'],
         	'section_id'	=> $row['section_id'],
         	'section_slug'	=> $section_slug,
-        	'title'			=> urldecode($row['title']),
+        	'title'			=> rawurldecode($row['title']),
         	'slug'			=> $row['slug'],
-        	'synopsis'		=> urldecode($row['synopsis']),
-        	'contents'		=> urldecode($row['contents']),
-        	'custom_data'	=> urldecode($row['custom_data']),
+        	'synopsis'		=> rawurldecode($row['synopsis']),
+        	'contents'		=> rawurldecode($row['contents']),
+        	'custom_data'	=> rawurldecode($row['custom_data']),
         	'created'		=> $row['created'],
         );
 	}
@@ -136,7 +136,7 @@ function list_articles($section_slug='',$total=5,$icon='file'){
 		mysql_close($connection);
 		while($row = mysql_fetch_array($result)){
 			echo '<li><i class="icon-'.$icon.'"></i>';
-			html_link(create_path($section_slug,$row['slug']),urldecode($row['title']));
+			html_link(create_path($section_slug,$row['slug']),rawurldecode($row['title']));
      	   echo '</li>';
 		}
 	}else{
@@ -149,7 +149,7 @@ function list_articles($section_slug='',$total=5,$icon='file'){
 		mysql_close($connection);
 		while($row = mysql_fetch_array($result)){
 			echo '<li><i class="icon-'.$icon.'"></i>';
-			html_link(create_path($slugs[$row['section_id']],$row['slug']),urldecode($row['title']));
+			html_link(create_path($slugs[$row['section_id']],$row['slug']),rawurldecode($row['title']));
      		echo '</li>';
 		}
 	}
@@ -165,8 +165,8 @@ function get_page($page_slug){
 	$page_data = array();
 	$row = mysql_fetch_row($result);
 	$page_data['id'] = $row[0];
-	$page_data['title'] = urldecode($row[1]);
-	$page_data['contents'] = urldecode($row[3]);
+	$page_data['title'] = rawurldecode($row[1]);
+	$page_data['contents'] = rawurldecode($row[3]);
 	return($page_data);
 }
 
@@ -182,13 +182,13 @@ function get_article($slug){
 	$article['section_id'] = $row[1];
 	$result2 = mysql_query("SELECT * FROM ".TBL_PRE."sections WHERE id=".$row[1]);
 	$row2 = mysql_fetch_row($result2);
-	$article['section_title'] = urldecode($row2[1]);
+	$article['section_title'] = rawurldecode($row2[1]);
 	$article['section_slug'] = $row2[2];
-	$article['title'] = urldecode($row[2]);
+	$article['title'] = rawurldecode($row[2]);
 	$article['slug'] = $row[3];
-	$article['synopsis'] = urldecode($row[4]);
-	$article['contents'] = urldecode($row[5]);
-	$article['custom_data'] = urldecode($row[6]);
+	$article['synopsis'] = rawurldecode($row[4]);
+	$article['contents'] = rawurldecode($row[5]);
+	$article['custom_data'] = rawurldecode($row[6]);
 	$article['created'] = strtotime($row[7]);
 	mysql_close($connection);
 	return($article);
