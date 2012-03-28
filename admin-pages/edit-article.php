@@ -88,14 +88,14 @@
 		<div class="control-group">
 			<label class="control-label" for="synopsis">Synopsis</label>
 			<div class="controls">
-				<textarea id="synopsis" name="synopsis" class="input-xlarge span6"><?php echo $article[0]['synopsis']; ?></textarea>
+				<textarea id="synopsis" name="synopsis" class="input-xlarge span6"><?php echo stripslashes($article[0]['synopsis']); ?></textarea>
 				<p class="help-block">A short intro to your article with no HTML</p>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="contents">Contents</label>
 			<div class="controls">
-				<textarea id="contents" name="contents" class="input-xlarge span6" rows="8"><?php echo $article[0]['contents']; ?></textarea>
+				<textarea id="contents" name="contents" class="input-xlarge span6" rows="8"><?php echo stripslashes($article[0]['contents']); ?></textarea>
 			</div>
 		</div>
 		<div class="control-group">

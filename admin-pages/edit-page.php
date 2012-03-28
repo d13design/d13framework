@@ -66,7 +66,7 @@
 		<div class="control-group">
 			<label class="control-label" for="contents">Contents</label>
 			<div class="controls">
-				<textarea id="contents" name="contents" class="input-xlarge span6" rows="8"><?php echo $page[0]['contents']; ?></textarea>
+				<textarea id="contents" name="contents" class="input-xlarge span6" rows="8"><?php echo stripslashes($page[0]['contents']); ?></textarea>
 			</div>
 		</div>
 		<div class="form-actions">

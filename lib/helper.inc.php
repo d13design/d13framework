@@ -114,8 +114,8 @@ function get_articles($section_slug,$start=0,$total=1000000){
         	'section_slug'	=> $section_slug,
         	'title'			=> rawurldecode($row['title']),
         	'slug'			=> $row['slug'],
-        	'synopsis'		=> rawurldecode($row['synopsis']),
-        	'contents'		=> rawurldecode($row['contents']),
+        	'synopsis'		=> stripslashes(rawurldecode($row['synopsis'])),
+        	'contents'		=> stripslashes(rawurldecode($row['contents'])),
         	'custom_data'	=> rawurldecode($row['custom_data']),
         	'created'		=> $row['created'],
         );
@@ -166,7 +166,7 @@ function get_page($page_slug){
 	$row = mysql_fetch_row($result);
 	$page_data['id'] = $row[0];
 	$page_data['title'] = rawurldecode($row[1]);
-	$page_data['contents'] = rawurldecode($row[3]);
+	$page_data['contents'] = stripslashes(rawurldecode($row[3]));
 	return($page_data);
 }
 
@@ -186,8 +186,8 @@ function get_article($slug){
 	$article['section_slug'] = $row2[2];
 	$article['title'] = rawurldecode($row[2]);
 	$article['slug'] = $row[3];
-	$article['synopsis'] = rawurldecode($row[4]);
-	$article['contents'] = rawurldecode($row[5]);
+	$article['synopsis'] = stripslashes(rawurldecode($row[4]));
+	$article['contents'] = stripslashes(rawurldecode($row[5]));
 	$article['custom_data'] = rawurldecode($row[6]);
 	$article['created'] = strtotime($row[7]);
 	mysql_close($connection);

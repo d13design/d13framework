@@ -41,7 +41,7 @@
 		while($row = mysql_fetch_array($result)){
 			echo '<tr><td>'.$row['id'].'</td><td><i class="icon-search"></i> ';
 			html_link(create_path($slugs[$row['section_id']],$row['slug']),rawurldecode($row['title']));
-     		echo '</td><td>'.trimmer(rawurldecode($row['synopsis'])).'</td>';
+     		echo '</td><td>'.trimmer(stripslashes(rawurldecode($row['synopsis']))).'</td>';
      		echo '<td>'.$sections[$row['section_id']].'</td>';
      		echo '<td><div class="btn-toolbar" style="margin:0px;"><div class="btn-group">';
      		echo '<a class="btn btn-primary" href="'.SITE_URL.'/admin/edit-article/'.$row['id'].'" title="Edit '.rawurldecode($row['title']).'"><i class="icon-pencil icon-white"></i></a>';
